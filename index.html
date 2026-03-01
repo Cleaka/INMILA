@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-THL80V9MMP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-THL80V9MMP');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FormalízateYa</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--p:#08287A;--pl:#1A3E9A;--ac:#F8E136;--bg:#F0F4FF;--sf:#fff;--ts:#3A4D7A;--tl:#7A8DB5;--br:#D4DCEF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+body::before{content:'';position:fixed;top:-120px;left:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(8,40,122,.13) 0%,transparent 70%);border-radius:50%;z-index:0;animation:f1 8s ease-in-out infinite;}
+body::after{content:'';position:fixed;bottom:-100px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(248,225,54,.16) 0%,transparent 70%);border-radius:50%;z-index:0;animation:f2 10s ease-in-out infinite;}
+@keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,20px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(-15px,-20px)}}
+.phone{position:relative;width:390px;min-height:844px;background:#fff;border-radius:48px;box-shadow:0 32px 80px rgba(26,36,64,.18),0 0 0 2px #DDE5F7;overflow:hidden;z-index:1;display:flex;flex-direction:column;}
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:14px 28px 0;background:linear-gradient(145deg,#051B5C,#1A3E9A);font-size:12px;font-weight:700;color:rgba(255,255,255,.85);}
+/* HERO */
+.hero{position:relative;background:linear-gradient(145deg,#051B5C 0%,#08287A 55%,#1A3E9A 100%);padding:28px 28px 70px;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(255,255,255,.07);border-radius:50%;}
+.wave{position:absolute;bottom:-1px;left:0;right:0;}
+.logo-row{display:flex;align-items:center;gap:12px;margin-bottom:28px;position:relative;z-index:1;}
+.logo-box{width:54px;height:54px;background:rgba(255,255,255,.18);border-radius:16px;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.3);font-size:26px;}
+.logo-box img{height: 38px;width: 45px;}
+.logo-texts{display:flex;flex-direction:column;}
+.logo-badge{font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.65);text-transform:uppercase;}
+.logo-name{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#fff;}
+.gbadge{margin-left:auto;background:#F8E136;border-radius:50px;padding:5px 12px;font-size:11px;font-weight:800;color:#08287A;}
+.wtag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.88);margin-bottom:12px;}
+.wtitle{font-family:'Nunito',sans-serif;font-size:30px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:10px;}
+.wtitle span{color:#F8E136;}
+.wsub{font-size:13.5px;color:rgba(255,255,255,.8);line-height:1.55;}
+/* CONTENT */
+.content{flex:1;padding:0 22px 28px;background:var(--bg);}
+.istrip{display:flex;gap:10px;margin:22px 0 20px;}
+.icard{flex:1;background:#fff;border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 4px 24px rgba(8,40,122,.09);border:1px solid var(--br);}
+.iico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.iico.b{background:#EEF3FF;}.iico.o{background:#FFF0EB;}.iico.g{background:#EDFAF3;}
+.ilbl{font-size:10.5px;font-weight:600;color:var(--ts);text-align:center;line-height:1.3;}
+.mcard{background:#fff;border-radius:28px;padding:26px 22px 22px;box-shadow:0 8px 40px rgba(8,40,122,.12);border:1px solid var(--br);}
+.cheader{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.cico{width:40px;height:40px;background:linear-gradient(135deg,#08287A,#1A3E9A);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ctitle{font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:var(--p);}
+.csub{font-size:12.5px;color:var(--ts);line-height:1.5;margin-bottom:20px;padding-left:50px;margin-top:2px;}
+.ilabel{font-size:12px;font-weight:700;color:var(--ts);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.ilabel::before{content:'';display:inline-block;width:4px;height:14px;background:#08287A;border-radius:2px;}
+.iwrap{position:relative;margin-bottom:16px;}
+.dni{width:100%;background:#F5F8FF;border:2px solid var(--br);border-radius:14px;padding:16px 54px 16px 18px;font-size:22px;font-family:'Nunito',sans-serif;font-weight:800;color:var(--p);letter-spacing:4px;outline:none;transition:all .25s;}
+.dni::placeholder{color:#C5D0E8;letter-spacing:3px;font-weight:600;font-size:18px;}
+.dni:focus{border-color:#08287A;background:#EEF2FF;box-shadow:0 0 0 4px rgba(8,40,122,.10);}
+.iico2{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:20px;pointer-events:none;}
+.cctr{display:flex;justify-content:space-between;align-items:center;margin-top:-8px;margin-bottom:20px;}
+.chnt{font-size:11.5px;color:var(--tl);}
+.cnum{font-size:11.5px;font-weight:700;color:var(--ts);}
+.pdots{display:flex;gap:5px;justify-content:center;margin-bottom:16px;}
+.dot{height:5px;border-radius:3px;background:var(--br);transition:all .3s;}
+.dot.a{background:#08287A;width:22px;}.dot:not(.a){width:8px;}
+.ctabtn{width:100%;background:linear-gradient(135deg,#F8E136,#FAE96A);color:#08287A;border:none;border-radius:14px;padding:18px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 24px rgba(248,225,54,.38);transition:all .22s;}
+.ctabtn:hover{transform:translateY(-2px);}
+.pnote{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;font-size:11px;color:var(--tl);}
+.pnote::before{content:'🔒';font-size:12px;}
+.bnav{background:#fff;border-top:1px solid var(--br);padding:12px 30px 24px;display:flex;justify-content:space-around;align-items:center;}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.35;}
+.ni.a{opacity:1;}
+.ni .nx{font-size:22px;}
+.ni .nl{font-size:9.5px;font-weight:600;color:var(--ts);}
+.ni.a .nl{color:#08287A;}
+.ndot{width:4px;height:4px;background:#08287A;border-radius:50%;margin-top:1px;display:none;}
+.ni.a .ndot{display:block;}
+/* MODALS */
+.mo{position:absolute;inset:0;background:rgba(5,27,92,.52);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .35s;}
+.mo.on{opacity:1;pointer-events:all;}
+.ms{width:100%;background:#fff;border-radius:32px 32px 0 0;padding:0 0 34px;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.26,.64,1);box-shadow:0 -8px 40px rgba(8,40,122,.18);max-height:92vh;overflow-y:auto;}
+.mo.on .ms{transform:translateY(0);}
+.mhnd{display:flex;justify-content:center;padding:14px 0 0;margin-bottom:6px;}
+.mhnd div{width:40px;height:4px;background:#D4DCEF;border-radius:2px;}
+.mprog{display:flex;gap:4px;padding:0 22px 14px;}
+.pb{height:4px;border-radius:2px;flex:1;background:#D4DCEF;transition:background .4s;}
+.pb.d{background:#08287A;}.pb.ac{background:#F8E136;}
+.mhdr{padding:4px 22px 14px;}
+.stag{display:inline-flex;align-items:center;gap:6px;background:#FFF8E1;border:1.5px solid #F8E136;border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:#7a6000;margin-bottom:10px;}
+.sbtag{display:inline-flex;align-items:center;gap:6px;background:#F0F4FF;border:1.5px solid #D4DCEF;border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:#08287A;margin-bottom:10px;}
+.sdot{width:6px;height:6px;background:#F8E136;border-radius:50%;border:1.5px solid #08287A;}
+.mtitle{font-family:'Nunito',sans-serif;font-size:21px;font-weight:900;color:#08287A;line-height:1.2;margin-bottom:6px;}
+.mq{font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;color:#1A3E9A;line-height:1.4;margin-bottom:4px;}
+.mhint{font-size:12px;color:#7A8DB5;line-height:1.4;font-style:italic;}
+/* Options */
+.olist{display:flex;flex-direction:column;gap:10px;padding:0 22px 18px;}
+.obtn{display:flex;align-items:center;gap:14px;background:#F8FAFF;border:2px solid #D4DCEF;border-radius:16px;padding:14px 16px;cursor:pointer;transition:all .22s;text-align:left;width:100%;}
+.obtn:hover,.obtn.sel{border-color:#08287A;background:#EEF3FF;box-shadow:0 4px 16px rgba(8,40,122,.10);}
+.oico{width:52px;height:52px;border-radius:14px;background:#fff;border:1.5px solid #D4DCEF;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;transition:all .22s;}
+.obtn.sel .oico{background:#08287A;border-color:#08287A;}
+.otxt{flex:1;}
+.ott{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#08287A;margin-bottom:1px;}
+.ots{font-size:12px;color:#7A8DB5;}
+.ochk{width:22px;height:22px;border-radius:50%;border:2px solid #D4DCEF;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:transparent;transition:all .22s;}
+.obtn.sel .ochk{background:#F8E136;border-color:#F8E136;color:#08287A;}
+/* YN */
+.ynlist{display:flex;flex-direction:column;gap:10px;padding:0 22px 18px;}
+.ynb{display:flex;align-items:center;gap:14px;border:2px solid #D4DCEF;border-radius:16px;padding:16px 18px;cursor:pointer;transition:all .22s;width:100%;background:#F8FAFF;}
+.ynb:hover,.ynb.sel{border-color:#08287A;background:#EEF3FF;box-shadow:0 4px 16px rgba(8,40,122,.10);}
+.ynico{width:48px;height:48px;border-radius:13px;background:#fff;border:1.5px solid #D4DCEF;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;transition:all .22s;}
+.ynb.sel .ynico{background:#08287A;border-color:#08287A;}
+.ynlbl{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#08287A;flex:1;text-align:left;}
+.ynr{width:20px;height:20px;border-radius:50%;border:2px solid #D4DCEF;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .22s;}
+.ynb.sel .ynr{border-color:#F8E136;background:#F8E136;}
+.ynd{width:7px;height:7px;border-radius:50%;background:#08287A;opacity:0;transform:scale(0);transition:all .22s;}
+.ynb.sel .ynd{opacity:1;transform:scale(1);}
+/* Illustrations */
+.illcard{margin:0 22px 16px;background:#F0F4FF;border:1.5px solid #D4DCEF;border-radius:16px;overflow:hidden;}
+.illvis{padding:18px 16px 12px;display:flex;align-items:flex-end;justify-content:center;min-height:110px;position:relative;background:linear-gradient(160deg,#e8eeff,#d4dcef);}
+.illcap{padding:9px 14px 11px;font-size:11.5px;color:#3A4D7A;font-weight:500;line-height:1.4;display:flex;align-items:flex-start;gap:6px;}
+.illcap::before{content:'💡';font-size:13px;flex-shrink:0;margin-top:1px;}
+/* street */
+.street{display:flex;align-items:flex-end;width:100%;justify-content:center;position:relative;}
+.vda{position:absolute;bottom:0;left:0;right:0;height:18px;background:#b0bcd4;border-top:3px solid #8a9bb8;}
+.hse{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+.rf{width:0;height:0;border-left:38px solid transparent;border-right:38px solid transparent;border-bottom:30px solid #c0392b;}
+.wls{width:68px;height:54px;background:#fff;border:2px solid #bdc9e0;display:flex;align-items:center;justify-content:center;position:relative;}
+.dr{width:17px;height:26px;background:#8B6914;border-radius:4px 4px 0 0;position:absolute;bottom:0;border:1.5px solid #6b500f;}
+.wn{width:15px;height:13px;background:#AED6F1;border:1.5px solid #bdc9e0;position:absolute;top:11px;left:9px;}
+.ret{width:42px;height:54px;background:repeating-linear-gradient(45deg,#c8f5d4,#c8f5d4 4px,#e8f8ed 4px,#e8f8ed 10px);border-top:2px dashed #4CAF50;z-index:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;}
+.ret span{font-size:7px;font-weight:800;color:#2e7d32;text-align:center;line-height:1.2;}
+.fnc{width:7px;height:44px;background:repeating-linear-gradient(to bottom,#8B6914 0,#8B6914 6px,transparent 6px,transparent 8px);border-left:2px solid #6b500f;border-right:2px solid #6b500f;z-index:3;margin-bottom:7px;}
+/* transformer */
+.pwrap{display:flex;flex-direction:column;align-items:center;}
+.ptop{width:42px;height:6px;background:#4b5563;border-radius:3px;position:relative;}
+.wl{position:absolute;top:2px;left:-22px;width:22px;height:2px;background:#374151;}
+.wr{position:absolute;top:2px;right:-22px;width:22px;height:2px;background:#374151;}
+.pole{width:9px;height:82px;background:linear-gradient(to right,#6b7280,#9ca3af,#6b7280);border-radius:2px;position:relative;}
+.trf{width:30px;height:20px;background:linear-gradient(135deg,#9ca3af,#6b7280);border-radius:4px;border:2px solid #4b5563;position:absolute;top:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:800;}
+.pbase{width:14px;height:11px;background:#4b5563;border-radius:0 0 3px 3px;}
+/* inputs */
+.fgroup{padding:0 22px 14px;}
+.finput{width:100%;background:#F5F8FF;border:2px solid #D4DCEF;border-radius:14px;padding:15px 70px 15px 18px;font-size:24px;font-family:'Nunito',sans-serif;font-weight:800;color:#08287A;outline:none;transition:all .25s;}
+.finput:focus{border-color:#08287A;background:#EEF2FF;box-shadow:0 0 0 4px rgba(8,40,122,.10);}
+.fwrap{position:relative;}
+.funit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;color:#7A8DB5;background:#E8EEF8;border-radius:8px;padding:4px 8px;}
+.fhint{background:#FFF8E1;border:1.5px solid #F8E136;border-radius:12px;padding:11px 13px;margin-top:10px;font-size:12px;color:#5a4800;line-height:1.45;display:flex;gap:8px;align-items:flex-start;}
+.fhint::before{content:'📏';font-size:15px;flex-shrink:0;}
+/* formula box */
+.formula{background:#EEF3FF;border:1.5px solid #D4DCEF;border-radius:12px;padding:12px 14px;margin-top:10px;text-align:center;}
+.formula .ftitle{font-size:11px;font-weight:700;color:#08287A;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.formula .feq{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#08287A;}
+.formula .feq span{color:#F8E136;background:#08287A;padding:2px 6px;border-radius:6px;}
+.formula .fsub{font-size:11px;color:#7A8DB5;margin-top:5px;}
+/* Area inputs */
+.area-row{display:flex;gap:10px;margin-top:12px;}
+.area-field{flex:1;}
+.area-lbl{font-size:11px;font-weight:700;color:#3A4D7A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.area-inp{width:100%;background:#F5F8FF;border:2px solid #D4DCEF;border-radius:12px;padding:13px 14px;font-size:20px;font-family:'Nunito',sans-serif;font-weight:800;color:#08287A;outline:none;transition:all .25s;text-align:center;}
+.area-inp:focus{border-color:#08287A;background:#EEF2FF;box-shadow:0 0 0 3px rgba(8,40,122,.08);}
+.area-x{display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#08287A;padding-top:26px;}
+.area-result{background:#F0F4FF;border:2px solid #D4DCEF;border-radius:12px;padding:12px;margin-top:10px;display:flex;align-items:center;justify-content:space-between;}
+.area-result .arlbl{font-size:12px;font-weight:600;color:#7A8DB5;}
+.area-result .arval{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#08287A;}
+.area-result .arunit{font-size:13px;font-weight:700;color:#7A8DB5;}
+/* Footer btn */
+.mft{padding:0 22px;}
+.nbtn{width:100%;background:linear-gradient(135deg,#F8E136,#FAE96A);color:#08287A;border:none;border-radius:14px;padding:17px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 24px rgba(248,225,54,.38);transition:all .22s;opacity:.4;pointer-events:none;}
+.nbtn.on{opacity:1;pointer-events:all;}
+.nbtn.on:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(248,225,54,.50);}
+/* RESULT */
+.ro{position:absolute;inset:0;z-index:200;display:flex;flex-direction:column;background:var(--bg);transform:translateX(110%);transition:transform .45s cubic-bezier(.22,1,.36,1);}
+.ro.on{transform:translateX(0);}
+.rhdr{background:linear-gradient(145deg,#051B5C,#08287A);padding:24px 24px 50px;position:relative;overflow:hidden;}
+.rhdr::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(255,255,255,.06);border-radius:50%;}
+.rwv{position:absolute;bottom:-1px;left:0;right:0;}
+.rback{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:20px;background:none;border:none;}
+.rtitle{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#fff;}
+.rsub{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;}
+.rbody{flex:1;padding:0 20px 30px;overflow-y:auto;}
+/* Fail */
+.fcard{background:#fff;border-radius:24px;padding:22px;box-shadow:0 8px 32px rgba(239,68,68,.12);border:2px solid #FCA5A5;margin-top:18px;}
+.fico{width:60px;height:60px;background:#FEF2F2;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:14px;}
+.fst{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#DC2626;margin-bottom:4px;}
+.fsb{font-size:13px;color:#7f1d1d;line-height:1.45;margin-bottom:16px;}
+.fdiv{height:1px;background:#FCA5A5;margin-bottom:14px;}
+.flbl{font-size:11px;font-weight:700;color:#DC2626;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.fitem{display:flex;gap:10px;align-items:flex-start;background:#FEF2F2;border-radius:11px;padding:11px 13px;margin-bottom:8px;font-size:13px;color:#7f1d1d;line-height:1.45;}
+.tipb{background:#FFF8E1;border:1.5px solid #F8E136;border-radius:11px;padding:13px;margin-top:10px;font-size:12px;color:#5a4800;line-height:1.5;}
+.retrybtn{width:100%;background:linear-gradient(135deg,#F8E136,#FAE96A);color:#08287A;border:none;border-radius:14px;padding:16px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:18px;box-shadow:0 6px 20px rgba(248,225,54,.35);transition:all .22s;}
+.retrybtn:hover{transform:translateY(-2px);}
+/* Success */
+.scard{background:#fff;border-radius:24px;padding:22px;box-shadow:0 8px 32px rgba(34,197,94,.12);border:2px solid #86EFAC;margin-top:18px;}
+.sico{width:60px;height:60px;background:#F0FDF4;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:14px;}
+.sst{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:#15803D;margin-bottom:4px;}
+.ssb{font-size:13px;color:#14532d;line-height:1.45;margin-bottom:16px;}
+.sdiv{height:1px;background:#86EFAC;margin-bottom:14px;}
+.mtag{display:inline-flex;align-items:center;gap:6px;background:#EEF3FF;border:1.5px solid #D4DCEF;border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:#08287A;margin-bottom:10px;}
+.capbox{background:linear-gradient(135deg,#08287A,#1A3E9A);border-radius:16px;padding:18px;text-align:center;margin-bottom:12px;}
+.clbl{font-size:11px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.cval{font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:#F8E136;line-height:1;}
+.cunit{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);margin-top:4px;}
+.cequiv{font-size:12px;color:rgba(255,255,255,.5);margin-top:5px;}
+.offbtn{width:100%;background:linear-gradient(135deg,#08287A,#1A3E9A);color:#fff;border:none;border-radius:14px;padding:15px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:8px;box-shadow:0 6px 20px rgba(8,40,122,.25);transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.offbtn:hover{transform:translateY(-2px);}
+.ghostbtn{width:100%;background:#F0F4FF;color:#08287A;border:2px solid #D4DCEF;border-radius:14px;padding:13px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-top:10px;}
+.savebtn{width:100%;background:#fff;color:#08287A;border:2px solid #08287A;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .22s;}
+.savebtn:hover{background:#EEF3FF;}
+.subitem{background:#FEF2F2;border-radius:10px;padding:10px 13px;margin-bottom:7px;font-size:12.5px;color:#7f1d1d;line-height:1.45;border-left:3px solid #FCA5A5;}
+.subitem-ok{background:#FFFBEB;border-radius:10px;padding:10px 13px;margin-bottom:7px;font-size:12.5px;color:#78350f;line-height:1.45;border-left:3px solid #FDE68A;}
+@keyframes popIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.apo{animation:popIn .45s cubic-bezier(.34,1.26,.64,1) both;}
+@media(max-width:430px){body{align-items:flex-start;}.phone{width:100%;min-height:100vh;border-radius:0;box-shadow:none;}}
+/* TAB SCREENS */
+.tabscreen{position:absolute;inset:0;background:var(--bg);z-index:150;display:flex;flex-direction:column;transform:translateX(110%);transition:transform .4s cubic-bezier(.22,1,.36,1);}
+.tabscreen.on{transform:translateX(0);}
+.ofscreen{position:absolute;inset:0;background:var(--bg);z-index:150;display:flex;flex-direction:column;transform:translateX(110%);transition:transform .4s cubic-bezier(.22,1,.36,1);}
+.ofscreen.on{transform:translateX(0);}
+.tabscreen-hdr{background:linear-gradient(145deg,#051B5C,#08287A);padding:24px 24px 50px;position:relative;overflow:hidden;flex-shrink:0;}
+.tabscreen-hdr::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(255,255,255,.06);border-radius:50%;}
+.tabscreen-back{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:20px;background:none;border:none;}
+.tabscreen-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#fff;}
+.tabscreen-sub{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;}
+.tabscreen-body{flex:1;padding:20px;overflow-y:auto;}
+.tabwave{position:absolute;bottom:-1px;left:0;right:0;}
+/* Oficinas screen */
+.ofhdr{background:linear-gradient(145deg,#051B5C,#08287A);padding:24px 24px 50px;position:relative;overflow:hidden;flex-shrink:0;}
+.ofhdr::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(255,255,255,.06);border-radius:50%;}
+.ofback{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:20px;background:none;border:none;}
+.oftitle{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#fff;}
+.ofsub{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px;}
+.ofwv{position:absolute;bottom:-1px;left:0;right:0;}
+.ofbody{flex:1;padding:20px;overflow-y:auto;}
+.ofcard{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;border:1.5px solid #D4DCEF;box-shadow:0 4px 20px rgba(8,40,122,.08);}
+.ofcard-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.ofcard-ico{width:44px;height:44px;background:linear-gradient(135deg,#08287A,#1A3E9A);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ofcard-name{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#08287A;}
+.ofcard-region{font-size:12px;color:#7A8DB5;margin-top:2px;}
+.ofcard-addr{font-size:13px;color:#3A4D7A;margin-bottom:12px;line-height:1.4;}
+.ofmap-btn{display:block;background:#EEF3FF;border:1.5px solid #D4DCEF;border-radius:10px;padding:10px;text-align:center;font-size:13px;font-weight:700;color:#08287A;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="phone">
+  <!-- STATUS -->
+  <div class="sbar"><span></span><div style="display:flex;gap:6px;font-size:13px;"><span></span><span></span></div></div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo-row">
+      <div class="logo-box">
+        <img src="logo.png" alt="Logo Osinergmin">
+      </div>
+      <div class="logo-texts"><span class="logo-badge">OSINERGMIN</span><span class="logo-name">INMILA</span></div>
+      <div class="gbadge">GRATIS</div>
+    </div>
+    <div class="wtag">👋 Bienvenido</div>
+    <div class="wtitle">¡Tu negocio<br>merece ser <span>formal!</span></div>
+    <div class="wsub">Revisaremos si tu local cumple los requisitos de seguridad y te guiaremos paso a paso.</div>
+    <svg class="wave" viewBox="0 0 390 52" fill="none"><path d="M0 52V28C60 8 130 0 195 0C260 0 330 8 390 28V52H0Z" fill="#F0F4FF"/></svg>
+  </div>
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="istrip">
+      <div class="icard"><div class="iico b">📋</div><span class="ilbl">Revisa tus requisitos</span></div>
+      <div class="icard"><div class="iico o">💾</div><span class="ilbl">Guarda tu avance</span></div>
+      <div class="icard"><div class="iico g">✅</div><span class="ilbl">Úsalo en oficina</span></div>
+    </div>
+    <div class="mcard">
+      <div class="cheader"><div class="cico">🪪</div><span class="ctitle">Ingresa tu DNI</span></div>
+      <p class="csub">Para guardar tu avance y usarlo en la oficina, necesitamos tu DNI.</p>
+      <div class="ilabel">Número de DNI (8 dígitos)</div>
+      <div class="iwrap">
+        <input class="dni" type="tel" maxlength="8" placeholder="00000000" id="dniIn" oninput="updDNI(this)"/>
+        <span class="iico2">🔍</span>
+      </div>
+      <div class="cctr"><span class="chnt">Solo números, sin puntos ni guiones</span><span class="cnum" id="ctr">0 / 8</span></div>
+      <div class="pdots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <button class="ctabtn" id="ctab" onclick="startApp()">Guardar DNI y Empezar <span>→</span></button>
+      <div class="pnote">Tu información está protegida y es confidencial</div>
+    </div>
+  </div>
+  <!-- NAV -->
+  <div class="bnav">
+    <div class="ni a" onclick="navGo('inicio')" id="navInicio"><span class="nx">🏠</span><span class="nl">Inicio</span><div class="ndot"></div></div>
+    <div class="ni" onclick="navGo('avance')" id="navAvance"><span class="nx">📄</span><span class="nl">Evaluaciones</span><div class="ndot"></div></div>
+    <div class="ni" onclick="navGo('oficinas')" id="navOficinas"><span class="nx">📍</span><span class="nl">Oficinas</span><div class="ndot"></div></div>
+    <div class="ni" onclick="navGo('ayuda')" id="navAyuda"><span class="nx">❓</span><span class="nl">Ayuda</span><div class="ndot"></div></div>
+  </div>
+
+  <!-- ══════════ RACK FLOW ══════════ -->
+  <!-- M1: Tipo almacenamiento -->
+  <div class="mo" id="m1">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="sbtag"><div class="sdot"></div> Pregunta 1 de 5</div>
+        <div class="mtitle">¿Cómo almacenarás el gas?</div>
+        <div class="mhint">Selecciona la opción que mejor describe tu local</div>
+      </div>
+      <div class="olist">
+        <button class="obtn" onclick="pickM1(this,'rack')">
+          <div class="oico">🗄️</div><div class="otxt"><div class="ott">En Rack</div><div class="ots">Hasta 120 kg</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickM1(this,'techo')">
+          <div class="oico">🏭</div><div class="otxt"><div class="ott">Local con techo</div><div class="ots">Hasta 5,000 kg</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickM1(this,'sin_techo')">
+          <div class="oico">🏗️</div><div class="otxt"><div class="ott">Local sin techo</div><div class="ots">Hasta 50,000 kg</div></div><div class="ochk">✓</div>
+        </button>
+      </div>
+      <div class="mft"><button class="nbtn" id="n1" onclick="goM1Next()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ══════════ RACK QUESTIONS ══════════ -->
+  <!-- RA-M2: Retiro -->
+  <div class="mo" id="ra_m2">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Tu casa tiene un "retiro"?</div>
+        <div class="mhint">Un espacio o jardín entre tu puerta y la vereda</div>
+      </div>
+      <div class="illcard">
+        <div class="illvis">
+          <div class="vda"></div>
+          <div class="street">
+            <div class="hse"><div class="rf"></div><div class="wls"><div class="wn"></div><div class="dr"></div></div></div>
+            <div class="ret"><span>↔</span><span>RETIRO</span></div>
+            <div class="fnc"></div>
+          </div>
+        </div>
+        <div class="illcap">Ejemplo de casa con retiro (espacio entre la puerta y la vereda)</div>
+      </div>
+      <div class="ynlist" id="ra_g2">
+        <button class="ynb" onclick="pickYN('ra_g2'); on('ra_n2')"><div class="ynico">✅</div><span class="ynlbl">Sí, tengo retiro</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('ra_g2'); on('ra_n2')"><div class="ynico">🚪</div><span class="ynlbl">No, mi casa da a la vereda</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="ra_n2" onclick="tr('ra_m2','ra_m3')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- RA-M3: Talleres -->
+  <div class="mo" id="ra_m3">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Alguno de tus vecinos tiene un taller de soldadura, mecánica, carpintería o negocio que genere chispas?</div>
+        <div class="mhint">Considera costados, atrás y frente</div>
+      </div>
+      <div class="ynlist" id="ra_g3">
+        <button class="ynb" onclick="pickYN('ra_g3'); on('ra_n3')"><div class="ynico">🔧</div><span class="ynlbl">Sí, hay un taller cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('ra_g3'); on('ra_n3')"><div class="ynico">🏠</div><span class="ynlbl">No, son casas o bodegas</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="ra_n3" onclick="tr('ra_m3','ra_m4')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- RA-M4: Transformador -->
+  <div class="mo" id="ra_m4">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Hay algún transformador eléctrico (ese gris en el poste) cerca?</div>
+      </div>
+      <div class="illcard">
+        <div class="illvis" style="background:linear-gradient(160deg,#e8eeff,#c8d4ee);padding-bottom:16px;">
+          <div class="pwrap"><div class="ptop"><div class="wl"></div><div class="wr"></div></div><div class="pole"><div class="trf">T</div></div><div class="pbase"></div></div>
+        </div>
+        <div class="illcap">Transformador eléctrico típico (gris) en poste</div>
+      </div>
+      <div class="ynlist" id="ra_g4">
+        <button class="ynb" onclick="pickYN('ra_g4','si'); on('ra_n4')"><div class="ynico">⚡</div><span class="ynlbl">Sí, hay uno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('ra_g4','no'); on('ra_n4')"><div class="ynico">✅</div><span class="ynlbl">No, no hay ninguno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="ra_n4" onclick="raHandleTransf()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- RA-M5: Distancia -->
+  <div class="mo" id="ra_m5">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div></div>
+      <div class="mhdr">
+        <div class="stag">📏 Distancia de Seguridad</div>
+        <div class="mtitle">Medición de distancia</div>
+        <div class="mq">¿A cuántos metros está el transformador de tu RACK?</div>
+      </div>
+      <div class="fgroup">
+        <div class="fwrap"><input class="finput" type="number" placeholder="0.0" id="ra_dist" oninput="chkField('ra_dist','ra_n5')" min="0" step="0.1"/><div class="funit">metros</div></div>
+        <div class="fhint">Mide en línea recta desde donde irá el rack hasta el transformador. La distancia mínima es <strong>7.6 metros</strong>.</div>
+      </div>
+      <div class="mft" style="margin-top:8px;"><button class="nbtn" id="ra_n5" onclick="raHandleDist()">Ver resultado →</button></div>
+    </div>
+  </div>
+
+  <!-- ══════════ LOCAL CON TECHO FLOW ══════════ -->
+  <!-- TC-M1: Ventilación permanente -->
+  <div class="mo" id="tc_m1">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿La ventilación de tu almacén es PERMANENTE?</div>
+        <div class="mhint">Ej: rejas, calados, un hueco que no se puede cerrar</div>
+      </div>
+      <div class="ynlist" id="tc_g1">
+        <button class="ynb" onclick="pickYN('tc_g1','si'); on('tc_n1')"><div class="ynico">✅</div><span class="ynlbl">Sí, es permanente</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g1','no'); on('tc_n1')"><div class="ynico">🪟</div><span class="ynlbl">No, tiene ventanas que se cierran o no tiene</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n1" onclick="tcHandleVent()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M2: Tamaño ventilación -->
+  <div class="mo" id="tc_m2">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">📐 Medidas de Ventilación</div>
+        <div class="mtitle">Tamaño de ventilación</div>
+        <div class="mq">¿Qué tamaño tiene esa ventilación (en metros cuadrados)?</div>
+      </div>
+      <div class="fgroup">
+        <div class="fhint" style="margin-bottom:12px;">Mide el ANCHO y el ALTO de tu reja. El mínimo es <strong>6 m²</strong>. ¡Importante! El tamaño de tu ventilación afectará tu capacidad máxima de almacén.</div>
+        <div class="formula">
+          <div class="ftitle">Fórmula para calcular m²</div>
+          <div class="feq"><span>Ancho</span> × <span>Alto</span> = m²</div>
+          <div class="fsub">Ejemplo: 3 m de ancho × 2 m de alto = 6 m²</div>
+        </div>
+        <div class="area-row">
+          <div class="area-field">
+            <div class="area-lbl">Ancho (m)</div>
+            <input class="area-inp" type="number" placeholder="0.0" id="tc_vw" oninput="calcArea()" min="0" step="0.1"/>
+          </div>
+          <div class="area-x">×</div>
+          <div class="area-field">
+            <div class="area-lbl">Alto (m)</div>
+            <input class="area-inp" type="number" placeholder="0.0" id="tc_vh" oninput="calcArea()" min="0" step="0.1"/>
+          </div>
+        </div>
+        <div class="area-result" id="area_result" style="display:none;">
+          <span class="arlbl">Total:</span>
+          <div style="display:flex;align-items:baseline;gap:5px;">
+            <span class="arval" id="area_val">0</span>
+            <span class="arunit">m²</span>
+          </div>
+        </div>
+      </div>
+      <div class="mft" style="margin-top:8px;"><button class="nbtn" id="tc_n2" onclick="tr('tc_m2','tc_m3')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M3: Talleres -->
+  <div class="mo" id="tc_m3">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Alguno de tus vecinos tiene un taller de soldadura, mecánica, carpintería o negocio que genere chispas?</div>
+        <div class="mhint">Considera costados, atrás y frente</div>
+      </div>
+      <div class="ynlist" id="tc_g3">
+        <button class="ynb" onclick="pickYN('tc_g3'); on('tc_n3')"><div class="ynico">🔧</div><span class="ynlbl">Sí, hay un taller cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g3'); on('tc_n3')"><div class="ynico">🏠</div><span class="ynlbl">No, son casas o bodegas</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n3" onclick="tr('tc_m3','tc_m4')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M4: Transformador -->
+  <div class="mo" id="tc_m4">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Hay algún transformador eléctrico (ese gris en el poste) cerca?</div>
+      </div>
+      <div class="illcard">
+        <div class="illvis" style="background:linear-gradient(160deg,#e8eeff,#c8d4ee);padding-bottom:16px;">
+          <div class="pwrap"><div class="ptop"><div class="wl"></div><div class="wr"></div></div><div class="pole"><div class="trf">T</div></div><div class="pbase"></div></div>
+        </div>
+        <div class="illcap">Transformador eléctrico típico (gris) en poste</div>
+      </div>
+      <div class="ynlist" id="tc_g4">
+        <button class="ynb" onclick="pickYN('tc_g4','si'); on('tc_n4')"><div class="ynico">⚡</div><span class="ynlbl">Sí, hay uno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g4','no'); on('tc_n4')"><div class="ynico">✅</div><span class="ynlbl">No, no hay ninguno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n4" onclick="tcHandleTransf()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M5: Distancia transformador -->
+  <div class="mo" id="tc_m5">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">📏 Distancia de Seguridad</div>
+        <div class="mtitle">Medición de distancia</div>
+        <div class="mq">¿A cuántos metros está el transformador de la zona de almacenamiento?</div>
+      </div>
+      <div class="fgroup">
+        <div class="fwrap"><input class="finput" type="number" placeholder="0.0" id="tc_dist" oninput="chkField('tc_dist','tc_n5')" min="0" step="0.1"/><div class="funit">metros</div></div>
+        <div class="fhint">Mide en línea recta desde la zona de almacenamiento. La distancia mínima es <strong>7.6 metros</strong>.</div>
+      </div>
+      <div class="mft" style="margin-top:8px;"><button class="nbtn" id="tc_n5" onclick="tr('tc_m5','tc_m6')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M6: Afluencia de público -->
+  <div class="mo" id="tc_m6">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Existen lugares de afluencia de público cercanos?</div>
+        <div class="mhint">Colegios, mercados, hospitales, iglesias, centros comerciales, etc.</div>
+      </div>
+      <div class="ynlist" id="tc_g6">
+        <button class="ynb" onclick="pickYN('tc_g6','si'); on('tc_n6')"><div class="ynico">🏫</div><span class="ynlbl">Sí, hay uno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g6','no'); on('tc_n6')"><div class="ynico">✅</div><span class="ynlbl">No, no hay ninguno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n6" onclick="tcHandlePublic()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M7: Distancia afluencia -->
+  <div class="mo" id="tc_m7">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">📏 Distancia de Seguridad</div>
+        <div class="mtitle">Medición de distancia</div>
+        <div class="mq">¿A cuántos metros está el lugar de afluencia de público más cercano?</div>
+      </div>
+      <div class="fgroup">
+        <div class="fwrap"><input class="finput" type="number" placeholder="0.0" id="tc_pub_dist" oninput="chkField('tc_pub_dist','tc_n7')" min="0" step="0.1"/><div class="funit">metros</div></div>
+        <div class="fhint">Mide en línea recta desde la zona de almacenamiento.</div>
+      </div>
+      <div class="mft" style="margin-top:8px;"><button class="nbtn" id="tc_n7" onclick="tr('tc_m7','tc_m8')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M8: Material TECHO -->
+  <div class="mo" id="tc_m8">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🏗️ Materiales de Construcción</div>
+        <div class="mtitle">Material del almacén</div>
+        <div class="mq">¿De qué material es el TECHO de tu almacén?</div>
+      </div>
+      <div class="olist" id="tc_g8">
+        <button class="obtn" onclick="pickOpt('tc_g8',this,'noble'); on('tc_n8')">
+          <div class="oico">🧱</div><div class="otxt"><div class="ott">Ladrillo / Cemento</div><div class="ots">No inflamable ✅</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('tc_g8',this,'mad'); on('tc_n8')">
+          <div class="oico">🪵</div><div class="otxt"><div class="ott">Madera / Quincha</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('tc_g8',this,'plas'); on('tc_n8')">
+          <div class="oico">🪣</div><div class="otxt"><div class="ott">Estera / Plástico</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n8" onclick="tr('tc_m8','tc_m9')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M9: Material PISO -->
+  <div class="mo" id="tc_m9">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🏗️ Materiales de Construcción</div>
+        <div class="mtitle">Material del almacén</div>
+        <div class="mq">¿De qué material es el PISO de tu almacén?</div>
+      </div>
+      <div class="olist" id="tc_g9">
+        <button class="obtn" onclick="pickOpt('tc_g9',this,'noble'); on('tc_n9')">
+          <div class="oico">🪨</div><div class="otxt"><div class="ott">Cemento / Concreto / Loseta</div><div class="ots">No inflamable ✅</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('tc_g9',this,'tierra'); on('tc_n9')">
+          <div class="oico">🌱</div><div class="otxt"><div class="ott">Tierra / Afirmado</div><div class="ots">Permeable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('tc_g9',this,'mad'); on('tc_n9')">
+          <div class="oico">🪵</div><div class="otxt"><div class="ott">Madera / Plástico / Vinilo</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n9" onclick="tr('tc_m9','tc_m10')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M10: Material PAREDES -->
+  <div class="mo" id="tc_m10">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🏗️ Materiales de Construcción</div>
+        <div class="mtitle">Material del almacén</div>
+        <div class="mq">¿De qué material son las PAREDES de tu almacén?</div>
+      </div>
+      <div class="olist" id="tc_g10">
+        <button class="obtn" onclick="pickOpt('tc_g10',this,'noble'); on('tc_n10')">
+          <div class="oico">🧱</div><div class="otxt"><div class="ott">Ladrillo / Cemento (Noble)</div><div class="ots">No inflamable ✅</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('tc_g10',this,'mad'); on('tc_n10')">
+          <div class="oico">🪵</div><div class="otxt"><div class="ott">Madera / Quincha</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('tc_g10',this,'plas'); on('tc_n10')">
+          <div class="oico">🪣</div><div class="otxt"><div class="ott">Estera / Plástico / Drywall</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n10" onclick="tr('tc_m10','tc_m11')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M11: Pisos superiores -->
+  <div class="mo" id="tc_m11">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div></div>
+      <div class="mhdr">
+        <div class="stag">🏢 Estructura del Local</div>
+        <div class="mtitle">Pisos superiores</div>
+        <div class="mq">¿Hay pisos superiores (otra vivienda, oficinas) ENCIMA de tu almacén?</div>
+        <div class="mhint">💡 Si hay construcción sobre tu almacén, la capacidad máxima se restringe a 300 kg por seguridad.</div>
+      </div>
+      <div class="ynlist" id="tc_g11">
+        <button class="ynb" onclick="pickYN('tc_g11','si'); on('tc_n11')"><div class="ynico">🏢</div><span class="ynlbl">Sí, hay pisos arriba</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g11','no'); on('tc_n11')"><div class="ynico">🏠</div><span class="ynlbl">No, es el primer piso / techo libre</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n11" onclick="tr('tc_m11','tc_m12')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M12: Otra puerta -->
+  <div class="mo" id="tc_m12">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div></div>
+      <div class="mhdr">
+        <div class="stag">🚪 Salidas de Emergencia</div>
+        <div class="mtitle">Salidas del almacén</div>
+        <div class="mq">Además de la puerta principal, ¿tu almacén tiene OTRA puerta de salida?</div>
+      </div>
+      <div class="ynlist" id="tc_g12">
+        <button class="ynb" onclick="pickYN('tc_g12'); on('tc_n12')"><div class="ynico">🚪</div><span class="ynlbl">Sí, tiene otra puerta</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g12'); on('tc_n12')"><div class="ynico">🔒</div><span class="ynlbl">No, solo tiene una entrada</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n12" onclick="tr('tc_m12','tc_m13')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M13: Cables eléctricos -->
+  <div class="mo" id="tc_m13">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div></div>
+      <div class="mhdr">
+        <div class="stag">⚡ Instalaciones Eléctricas</div>
+        <div class="mtitle">Instalaciones eléctricas</div>
+        <div class="mq">¿Hay cables eléctricos, enchufes o tomacorrientes DENTRO del almacén?</div>
+      </div>
+      <div class="ynlist" id="tc_g13">
+        <button class="ynb" onclick="pickYN('tc_g13'); on('tc_n13')"><div class="ynico">⚡</div><span class="ynlbl">Sí, hay cables / enchufes</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('tc_g13'); on('tc_n13')"><div class="ynico">✅</div><span class="ynlbl">No, no hay nada eléctrico</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="tc_n13" onclick="tr('tc_m13','tc_m14')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- TC-M14: Medidas almacén -->
+  <div class="mo" id="tc_m14">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div></div>
+      <div class="mhdr">
+        <div class="stag">📐 Área del Almacén</div>
+        <div class="mtitle">Medidas del almacén</div>
+        <div class="mq">Ingresa las medidas TOTALES de tu almacén (en metros):</div>
+        <div class="mhint">💡 La norma exige un despeje que depende de la cantidad a almacenar. Más de 2000 kg requiere pasillos de 2 m. Tu local debe medir al menos 2 m × 2 m.</div>
+      </div>
+      <div class="fgroup">
+        <div class="area-row">
+          <div class="area-field">
+            <div class="area-lbl">Largo (m)</div>
+            <input class="area-inp" type="number" placeholder="0.0" id="tc_largo" oninput="calcLocal()" min="0" step="0.1"/>
+          </div>
+          <div class="area-x">×</div>
+          <div class="area-field">
+            <div class="area-lbl">Ancho (m)</div>
+            <input class="area-inp" type="number" placeholder="0.0" id="tc_ancho" oninput="calcLocal()" min="0" step="0.1"/>
+          </div>
+        </div>
+        <div class="area-result" id="local_result" style="display:none;">
+          <span class="arlbl">Área total:</span>
+          <div style="display:flex;align-items:baseline;gap:5px;">
+            <span class="arval" id="local_val">0</span>
+            <span class="arunit">m²</span>
+          </div>
+        </div>
+      </div>
+      <div class="mft" style="margin-top:12px;"><button class="nbtn" id="tc_n14" onclick="tcShowResult()">Ver resultado →</button></div>
+    </div>
+  </div>
+
+  <!-- ══════════ RESULTS ══════════ -->
+  <!-- RACK APPROVED -->
+  <div class="ro" id="rOk">
+    <div class="rhdr" style="background:linear-gradient(145deg,#064e26,#15803D);">
+      <button class="rback" onclick="resetAll()">← Volver al inicio</button>
+      <div class="rtitle">Pre-evaluación</div>
+      <div class="rsub">Resultado de tu revisión de seguridad</div>
+      <svg class="rwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="rbody">
+      <div class="scard apo">
+        <!-- Confetti strip -->
+        <div style="display:flex;justify-content:center;gap:6px;margin-bottom:16px;">
+          <span style="font-size:22px;">🎉</span><span style="font-size:22px;">🥳</span><span style="font-size:22px;">🎊</span>
+        </div>
+        <div class="sst" style="font-size:22px;">¡Felicidades! Local APROBADO</div>
+        <div class="ssb">Has pasado la pre-evaluación de seguridad. Tu espacio cumple con los requisitos críticos.</div>
+        <div class="sdiv"></div>
+        <div class="mtag">🗄️ Tu modalidad: RACK / JAULA — Límite fijo</div>
+        <div class="capbox">
+          <div class="clbl">Capacidad Máxima</div>
+          <div class="cval">120 <span style="font-size:22px;">kg</span></div>
+          <div class="cunit" style="color:rgba(255,255,255,.85);">Equivalente a 12 balones de 10 kg</div>
+        </div>
+        <!-- CTA message -->
+        <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86EFAC;border-radius:16px;padding:16px;margin-bottom:12px;">
+          <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#14532d;margin-bottom:6px;">📍 Siguiente paso</div>
+          <div style="font-size:13px;color:#166534;line-height:1.6;">Acércate a la oficina de <strong>Osinergmin</strong>, para el apoyo con los trámites documentarios.<br><strong>¡Te esperamos!</strong></div>
+        </div>
+        <button class="offbtn" onclick="toggleOficinas()">📍 Ver oficinas de Osinergmin</button>
+        <button class="savebtn" onclick="saveEval('rOk')">💾 Guardar evaluación</button>
+        <button class="ghostbtn" onclick="resetAll()">🔄 Hacer otra evaluación</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RACK FAIL -->
+  <div class="ro" id="rFail">
+    <div class="rhdr" style="background:linear-gradient(145deg,#7f1d1d,#DC2626);">
+      <button class="rback" onclick="resetAll()">← Volver al inicio</button>
+      <div class="rtitle">Pre-evaluación</div>
+      <div class="rsub">Resultado de tu revisión de seguridad</div>
+      <svg class="rwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="rbody">
+      <div class="fcard apo">
+        <div class="fico">🚫</div>
+        <div class="fst">Local NO APROBADO</div>
+        <div class="fsb">Tu espacio no cumple con uno o más requisitos críticos de seguridad.</div>
+        <!-- Advice box -->
+        <div style="background:#FFF8E1;border:1.5px solid #F8E136;border-radius:12px;padding:13px 14px;margin-bottom:16px;font-size:13px;color:#5a4800;line-height:1.5;">
+          💼 Debes optar con adquirir establecimientos que cumplan con los siguientes puntos:
+        </div>
+        <div class="fdiv"></div>
+        <div class="flbl">❌ Observaciones críticas</div>
+        <div id="ra_fail_list"></div>
+        <!-- Footer message -->
+        <div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:12px;padding:14px;margin-top:12px;font-size:13px;color:#7f1d1d;line-height:1.5;text-align:center;font-weight:600;">
+          En esta oportunidad tu establecimiento no cumple con lo mínimo requerido por las normas de seguridad.
+        </div>
+        <button class="retrybtn" onclick="resetAll()">🔄 Volver a intentarlo</button>
+        <button class="savebtn" onclick="saveEval('rFail')">💾 Guardar evaluación</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHO FAIL -->
+  <div class="ro" id="tcFail">
+    <div class="rhdr" style="background:linear-gradient(145deg,#7f1d1d,#DC2626);">
+      <button class="rback" onclick="resetAll()">← Volver al inicio</button>
+      <div class="rtitle">Pre-evaluación</div>
+      <div class="rsub">Resultado de tu revisión de seguridad</div>
+      <svg class="rwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="rbody">
+      <div class="fcard apo">
+        <div class="fico">🚫</div>
+        <div class="fst">Local NO APROBADO</div>
+        <div class="fsb">Tu espacio no cumple con uno o más requisitos críticos de seguridad.</div>
+        <div style="background:#FFF8E1;border:1.5px solid #F8E136;border-radius:12px;padding:13px 14px;margin-bottom:14px;font-size:13px;color:#5a4800;line-height:1.5;font-weight:600;">
+          💼 Debes optar con adquirir establecimientos que cumplan con los siguientes puntos:
+        </div>
+        <div class="fdiv"></div>
+        <div class="flbl">❌ Observaciones críticas</div>
+        <div id="tc_fail_body"></div>
+        <div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:12px;padding:14px;margin-top:14px;font-size:13px;color:#7f1d1d;line-height:1.5;text-align:center;font-weight:600;">
+          En esta oportunidad tu establecimiento no cumple con lo mínimo requerido por las normas de seguridad.
+        </div>
+        <button class="retrybtn" onclick="resetAll()">🔄 Volver a intentarlo</button>
+        <button class="savebtn" onclick="saveEval('tcFail')">💾 Guardar evaluación</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHO OK -->
+  <div class="ro" id="tcOk">
+    <div class="rhdr" id="tcOk_hdr" style="background:linear-gradient(145deg,#064e26,#15803D);">
+      <button class="rback" onclick="resetAll()">← Volver al inicio</button>
+      <div class="rtitle">Pre-evaluación</div>
+      <div class="rsub">Resultado de tu revisión de seguridad</div>
+      <svg class="rwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="rbody">
+      <div class="apo" id="tcOk_card" style="background:#fff;border-radius:24px;padding:22px;box-shadow:0 8px 32px rgba(34,197,94,.12);border:2px solid #86EFAC;margin-top:18px;">
+        <div style="display:flex;justify-content:center;gap:6px;margin-bottom:14px;">
+          <span style="font-size:22px;">🎉</span><span style="font-size:22px;">🥳</span><span style="font-size:22px;">🎊</span>
+        </div>
+        <div style="font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#14532d;margin-bottom:4px;">¡Felicidades! Local APROBADO</div>
+
+        <!-- WITH SUBS section -->
+        <div id="tc_ok_subs_section" style="display:none;">
+          <div style="font-size:13px;color:#166534;line-height:1.55;margin-bottom:14px;">Has pasado la pre-evaluación de seguridad. Tu espacio cumple con los requisitos mínimos, sin embargo, tu almacén debe cumplir con los siguientes puntos al momento de la visita de supervisión:</div>
+          <div id="tc_ok_subs" style="margin-bottom:14px;"></div>
+        </div>
+
+        <!-- NO SUBS section -->
+        <div id="tc_ok_nosubs_msg" style="display:none;">
+          <div style="font-size:13px;color:#166534;line-height:1.55;margin-bottom:14px;">Has pasado la pre-evaluación de seguridad. Tu espacio cumple con los requisitos mínimos.</div>
+        </div>
+
+        <div style="height:1px;background:#FDE68A;margin-bottom:14px;"></div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#DCFCE7;border:1.5px solid #86EFAC;border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:#14532d;margin-bottom:12px;">🏭 Tu modalidad: LOCAL CON TECHO</div>
+
+        <div style="background:linear-gradient(135deg,#08287A,#1A3E9A);border-radius:16px;padding:18px;text-align:center;margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">Capacidad Máxima</div>
+          <div style="font-family:'Nunito',sans-serif;font-size:32px;font-weight:900;color:#F8E136;line-height:1;" id="tcCapVal">—</div>
+          <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,.75);margin-top:4px;">Calculada según tu ventilación y estructura</div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86EFAC;border-radius:16px;padding:16px;margin-bottom:12px;">
+          <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#14532d;margin-bottom:6px;">📍 Siguiente paso</div>
+          <div style="font-size:13px;color:#166534;line-height:1.6;">Acércate a una oficina de <strong>Osinergmin</strong> más cercana, para el apoyo con los trámites documentarios.<br><strong>¡Te esperamos!</strong></div>
+        </div>
+        <button class="offbtn" onclick="toggleOficinas()">📍 Ver oficinas de Osinergmin</button>
+        <button class="savebtn" onclick="saveEval('tcOk')">💾 Guardar evaluación</button>
+        <button class="ghostbtn" onclick="resetAll()">🔄 Hacer otra evaluación</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ SIN TECHO FLOW ══════════ -->
+  <!-- ST-M1: Talleres -->
+  <div class="mo" id="st_m1">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Alguno de tus vecinos tiene un taller de soldadura, mecánica, carpintería o negocio que genere chispas?</div>
+        <div class="mhint">Considera costados, atrás y frente de tu local</div>
+      </div>
+      <div class="ynlist" id="st_g1">
+        <button class="ynb" onclick="pickYN('st_g1'); on('st_n1')"><div class="ynico">🔧</div><span class="ynlbl">Sí, hay un taller cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('st_g1'); on('st_n1')"><div class="ynico">🏠</div><span class="ynlbl">No, son casas o bodegas</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n1" onclick="tr('st_m1','st_m2')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M2: Transformador -->
+  <div class="mo" id="st_m2">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Hay algún transformador eléctrico (ese gris en el poste) cerca?</div>
+      </div>
+      <div class="illcard">
+        <div class="illvis" style="background:linear-gradient(160deg,#e8eeff,#c8d4ee);padding-bottom:16px;">
+          <div class="pwrap"><div class="ptop"><div class="wl"></div><div class="wr"></div></div><div class="pole"><div class="trf">T</div></div><div class="pbase"></div></div>
+        </div>
+        <div class="illcap">Transformador eléctrico típico (gris) en poste</div>
+      </div>
+      <div class="ynlist" id="st_g2">
+        <button class="ynb" onclick="pickYN('st_g2','si'); on('st_n2')"><div class="ynico">⚡</div><span class="ynlbl">Sí, hay uno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('st_g2','no'); on('st_n2')"><div class="ynico">✅</div><span class="ynlbl">No, no hay ninguno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n2" onclick="stHandleTransf()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M3: Distancia transformador -->
+  <div class="mo" id="st_m3">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">📏 Distancia de Seguridad</div>
+        <div class="mtitle">Medición de distancia</div>
+        <div class="mq">¿A cuántos metros está el transformador de la zona de almacenamiento?</div>
+      </div>
+      <div class="fgroup">
+        <div class="fwrap"><input class="finput" type="number" placeholder="0.0" id="st_dist" oninput="chkField('st_dist','st_n3')" min="0" step="0.1"/><div class="funit">metros</div></div>
+        <div class="fhint">Mide en línea recta desde la zona de almacenamiento. La distancia mínima es <strong>7.6 metros</strong>.</div>
+      </div>
+      <div class="mft" style="margin-top:8px;"><button class="nbtn" id="st_n3" onclick="tr('st_m3','st_m4')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M4: Afluencia pública -->
+  <div class="mo" id="st_m4">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🛡️ Revisión de Seguridad</div>
+        <div class="mtitle">Revisión de Seguridad</div>
+        <div class="mq">¿Existen lugares de afluencia de público cercanos?</div>
+        <div class="mhint">Colegios, mercados, hospitales, iglesias, centros comerciales, etc.</div>
+      </div>
+      <div class="ynlist" id="st_g4">
+        <button class="ynb" onclick="pickYN('st_g4','si'); on('st_n4')"><div class="ynico">🏫</div><span class="ynlbl">Sí, hay uno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('st_g4','no'); on('st_n4')"><div class="ynico">✅</div><span class="ynlbl">No, no hay ninguno cerca</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n4" onclick="stHandlePublic()">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M5: Distancia afluencia -->
+  <div class="mo" id="st_m5">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">📏 Distancia de Seguridad</div>
+        <div class="mtitle">Medición de distancia</div>
+        <div class="mq">¿A cuántos metros está el lugar de afluencia de público más cercano?</div>
+      </div>
+      <div class="fgroup">
+        <div class="fwrap"><input class="finput" type="number" placeholder="0.0" id="st_pub_dist" oninput="chkField('st_pub_dist','st_n5')" min="0" step="0.1"/><div class="funit">metros</div></div>
+        <div class="fhint">Mide en línea recta desde la zona de almacenamiento.</div>
+      </div>
+      <div class="mft" style="margin-top:8px;"><button class="nbtn" id="st_n5" onclick="tr('st_m5','st_m6')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M6: Toldo -->
+  <div class="mo" id="st_m6">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">☀️ Cobertura del Área</div>
+        <div class="mtitle">Cobertura del área</div>
+        <div class="mq">¿Usarás algún toldo o techo temporal sobre el área?</div>
+        <div class="mhint">💡 La normativa exige que el área de balones esté a cielo abierto, sin coberturas inflamables.</div>
+      </div>
+      <div class="ynlist" id="st_g6">
+        <button class="ynb" onclick="pickYN('st_g6','si'); on('st_n6')"><div class="ynico">⛺</div><span class="ynlbl">Sí, pondré un toldo / techo</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('st_g6','no'); on('st_n6')"><div class="ynico">🌤️</div><span class="ynlbl">No, estará a cielo abierto</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n6" onclick="tr('st_m6','st_m7')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M7: Material PISO -->
+  <div class="mo" id="st_m7">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🏗️ Materiales de Construcción</div>
+        <div class="mtitle">Material del área</div>
+        <div class="mq">¿De qué material es el PISO de tu almacén?</div>
+      </div>
+      <div class="olist" id="st_g7o">
+        <button class="obtn" onclick="pickOpt('st_g7o',this,'noble'); on('st_n7')">
+          <div class="oico">🪨</div><div class="otxt"><div class="ott">Cemento / Concreto / Loseta</div><div class="ots">No inflamable ✅</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('st_g7o',this,'tierra'); on('st_n7')">
+          <div class="oico">🌱</div><div class="otxt"><div class="ott">Tierra / Afirmado</div><div class="ots">Permeable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('st_g7o',this,'mad'); on('st_n7')">
+          <div class="oico">🪵</div><div class="otxt"><div class="ott">Madera / Plástico / Vinilo</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n7" onclick="tr('st_m7','st_m8')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M8: Material PAREDES -->
+  <div class="mo" id="st_m8">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div><div class="pb"></div></div>
+      <div class="mhdr">
+        <div class="stag">🏗️ Materiales de Construcción</div>
+        <div class="mtitle">Material del área</div>
+        <div class="mq">¿De qué material son las PAREDES de tu almacén?</div>
+      </div>
+      <div class="olist" id="st_g8o">
+        <button class="obtn" onclick="pickOpt('st_g8o',this,'noble'); on('st_n8')">
+          <div class="oico">🧱</div><div class="otxt"><div class="ott">Ladrillo / Cemento (Noble)</div><div class="ots">No inflamable ✅</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('st_g8o',this,'mad'); on('st_n8')">
+          <div class="oico">🪵</div><div class="otxt"><div class="ott">Madera / Quincha</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+        <button class="obtn" onclick="pickOpt('st_g8o',this,'plas'); on('st_n8')">
+          <div class="oico">🪣</div><div class="otxt"><div class="ott">Estera / Plástico / Drywall</div><div class="ots">Inflamable ⚠️</div></div><div class="ochk">✓</div>
+        </button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n8" onclick="tr('st_m8','st_m9')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M9: Cables eléctricos -->
+  <div class="mo" id="st_m9">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb ac"></div></div>
+      <div class="mhdr">
+        <div class="stag">⚡ Instalaciones Eléctricas</div>
+        <div class="mtitle">Instalaciones eléctricas</div>
+        <div class="mq">¿Hay cables eléctricos, enchufes o tomacorrientes DENTRO del almacén?</div>
+      </div>
+      <div class="ynlist" id="st_g9">
+        <button class="ynb" onclick="pickYN('st_g9'); on('st_n9')"><div class="ynico">⚡</div><span class="ynlbl">Sí, hay cables / enchufes</span><div class="ynr"><div class="ynd"></div></div></button>
+        <button class="ynb" onclick="pickYN('st_g9'); on('st_n9')"><div class="ynico">✅</div><span class="ynlbl">No, no hay nada eléctrico</span><div class="ynr"><div class="ynd"></div></div></button>
+      </div>
+      <div class="mft"><button class="nbtn" id="st_n9" onclick="tr('st_m9','st_m10')">Siguiente pregunta →</button></div>
+    </div>
+  </div>
+
+  <!-- ST-M10: Medidas almacén -->
+  <div class="mo" id="st_m10">
+    <div class="ms">
+      <div class="mhnd"><div></div></div>
+      <div class="mprog"><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div><div class="pb d"></div></div>
+      <div class="mhdr">
+        <div class="stag">📐 Área del Almacén</div>
+        <div class="mtitle">Medidas del almacén</div>
+        <div class="mq">Ingresa las medidas TOTALES de tu almacén (en metros):</div>
+        <div class="mhint">💡 La norma exige un despeje que depende de la cantidad a almacenar. Más de 2,000 kg requiere pasillos de 2 m. Tu local debe medir al menos 2 m × 2 m.</div>
+      </div>
+      <div class="fgroup">
+        <div class="area-row">
+          <div class="area-field">
+            <div class="area-lbl">Largo (m)</div>
+            <input class="area-inp" type="number" placeholder="0.0" id="st_largo" oninput="calcST()" min="0" step="0.1"/>
+          </div>
+          <div class="area-x">×</div>
+          <div class="area-field">
+            <div class="area-lbl">Ancho (m)</div>
+            <input class="area-inp" type="number" placeholder="0.0" id="st_ancho" oninput="calcST()" min="0" step="0.1"/>
+          </div>
+        </div>
+        <div class="area-result" id="st_local_result" style="display:none;">
+          <span class="arlbl">Área total:</span>
+          <div style="display:flex;align-items:baseline;gap:5px;">
+            <span class="arval" id="st_local_val">0</span>
+            <span class="arunit">m²</span>
+          </div>
+        </div>
+      </div>
+      <div class="mft" style="margin-top:12px;"><button class="nbtn" id="st_n10" onclick="stShowResult()">Ver resultado →</button></div>
+    </div>
+  </div>
+
+  <!-- ST FAIL -->
+  <div class="ro" id="stFail">
+    <div class="rhdr" style="background:linear-gradient(145deg,#7f1d1d,#DC2626);">
+      <button class="rback" onclick="resetAll()">← Volver al inicio</button>
+      <div class="rtitle">Pre-evaluación</div>
+      <div class="rsub">Resultado de tu revisión de seguridad</div>
+      <svg class="rwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="rbody">
+      <div class="fcard apo">
+        <div class="fico">🚫</div>
+        <div class="fst">Local NO APROBADO</div>
+        <div class="fsb">Tu espacio no cumple con uno o más requisitos críticos de seguridad.</div>
+        <div style="background:#FFF8E1;border:1.5px solid #F8E136;border-radius:12px;padding:13px 14px;margin-bottom:14px;font-size:13px;color:#5a4800;line-height:1.5;font-weight:600;">
+          💼 Debes optar con adquirir establecimientos que cumplan con los siguientes puntos:
+        </div>
+        <div class="fdiv"></div>
+        <div class="flbl">❌ Observaciones críticas</div>
+        <div id="st_fail_body"></div>
+        <div style="background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:12px;padding:14px;margin-top:14px;font-size:13px;color:#7f1d1d;line-height:1.5;text-align:center;font-weight:600;">
+          En esta oportunidad tu establecimiento no cumple con lo mínimo requerido por las normas de seguridad.
+        </div>
+        <button class="retrybtn" onclick="resetAll()">🔄 Volver a intentarlo</button>
+        <button class="savebtn" onclick="saveEval('stFail')">💾 Guardar evaluación</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ST OK -->
+  <div class="ro" id="stOk">
+    <div class="rhdr" id="stOk_hdr" style="background:linear-gradient(145deg,#064e26,#15803D);">
+      <button class="rback" onclick="resetAll()">← Volver al inicio</button>
+      <div class="rtitle">Pre-evaluación</div>
+      <div class="rsub">Resultado de tu revisión de seguridad</div>
+      <svg class="rwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="rbody">
+      <div class="apo" id="stOk_card" style="background:#fff;border-radius:24px;padding:22px;box-shadow:0 8px 32px rgba(34,197,94,.12);border:2px solid #86EFAC;margin-top:18px;">
+        <div style="display:flex;justify-content:center;gap:6px;margin-bottom:14px;">
+          <span style="font-size:22px;">🎉</span><span style="font-size:22px;">🥳</span><span style="font-size:22px;">🎊</span>
+        </div>
+        <div style="font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#14532d;margin-bottom:4px;">¡Felicidades! Local APROBADO</div>
+
+        <!-- WITH SUBS -->
+        <div id="st_ok_subs_section" style="display:none;">
+          <div style="font-size:13px;color:#166534;line-height:1.55;margin-bottom:14px;">Has pasado la pre-evaluación de seguridad. Tu espacio cumple con los requisitos mínimos, sin embargo, tu almacén debe cumplir con los siguientes puntos al momento de la visita de supervisión:</div>
+          <div id="st_ok_subs" style="margin-bottom:14px;"></div>
+        </div>
+
+        <!-- NO SUBS -->
+        <div id="st_ok_nosubs_msg" style="display:none;">
+          <div style="font-size:13px;color:#166534;line-height:1.55;margin-bottom:14px;">Has pasado la pre-evaluación de seguridad. Tu espacio cumple con los requisitos mínimos.</div>
+        </div>
+
+        <div style="height:1px;background:#86EFAC;margin-bottom:14px;"></div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:#DCFCE7;border:1.5px solid #86EFAC;border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:#14532d;margin-bottom:12px;">🏗️ Tu modalidad: LOCAL SIN TECHO</div>
+
+        <div style="background:linear-gradient(135deg,#08287A,#1A3E9A);border-radius:16px;padding:18px;text-align:center;margin-bottom:14px;">
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;">Capacidad Máxima</div>
+          <div style="font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;color:#F8E136;line-height:1;" id="stCapVal">—</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:6px;">Calculada según área útil y normativa vigente</div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86EFAC;border-radius:16px;padding:16px;margin-bottom:12px;">
+          <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#14532d;margin-bottom:6px;">📍 Siguiente paso</div>
+          <div style="font-size:13px;color:#166534;line-height:1.6;">Acércate a una oficina de <strong>Osinergmin</strong> más cercana, para el apoyo con los trámites documentarios.<br><strong>¡Te esperamos!</strong></div>
+        </div>
+        <button class="offbtn" onclick="toggleOficinas()">📍 Ver oficinas de Osinergmin</button>
+        <button class="savebtn" onclick="saveEval('stOk')">💾 Guardar evaluación</button>
+        <button class="ghostbtn" onclick="resetAll()">🔄 Hacer otra evaluación</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════ OFICINAS SCREEN ══════════ -->
+  <div class="ofscreen" id="ofScreen">
+    <div class="ofhdr">
+      <button class="ofback" onclick="closeOficinas()">← Volver</button>
+      <div class="oftitle">Oficinas Osinergmin</div>
+      <div class="ofsub">Acércate con tu DNI para iniciar tus trámites</div>
+      <svg class="ofwv" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="ofbody">
+
+      <div style="background:#EEF3FF;border:1.5px solid #D4DCEF;border-radius:14px;padding:12px 14px;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start;">
+        <span style="font-size:18px;flex-shrink:0;">📋</span>
+        <span style="font-size:12px;color:#3A4D7A;line-height:1.5;">Lleva tu DNI y el resultado de tu pre-evaluación. El personal te guiará en los trámites documentarios.</span>
+      </div>
+
+      <!-- PASCO -->
+      <div class="ofcard">
+        <div class="ofcard-head">
+          <div class="ofcard-ico">🏛️</div>
+          <div>
+            <div class="ofcard-name">Oficina Regional Pasco</div>
+            <div class="ofcard-region">📍 Pasco / Pasco / Yanacancha</div>
+          </div>
+        </div>
+        <div class="ofcard-addr">Jirón Agustín Gamarra N° 107</div>
+        <a class="ofmap-btn" href="https://maps.app.goo.gl/hzRsfA7iSDZgHhLT9" target="_blank">🗺️ Ver en Google Maps</a>
+      </div>
+
+      <!-- LIMA SUR -->
+      <div class="ofcard">
+        <div class="ofcard-head">
+          <div class="ofcard-ico">🏛️</div>
+          <div>
+            <div class="ofcard-name">Oficina Regional Lima Sur</div>
+            <div class="ofcard-region">📍 Lima / Lima / Surco</div>
+          </div>
+        </div>
+        <div class="ofcard-addr">Avenida Caminos del Inca N° 3264</div>
+        <a class="ofmap-btn" href="https://maps.app.goo.gl/aUED2TEsUQ2BBMod6" target="_blank">🗺️ Ver en Google Maps</a>
+      </div>
+
+      <!-- ICA -->
+      <div class="ofcard">
+        <div class="ofcard-head">
+          <div class="ofcard-ico">🏛️</div>
+          <div>
+            <div class="ofcard-name">Oficina Regional Ica</div>
+            <div class="ofcard-region">📍 Ica / Ica / Ica</div>
+          </div>
+        </div>
+        <div class="ofcard-addr">Avenida Iquitos N° 1100, esquina con Jr. Italia N° 100</div>
+        <a class="ofmap-btn" href="https://maps.app.goo.gl/ZvnZtfdUuV35irgL8" target="_blank">🗺️ Ver en Google Maps</a>
+      </div>
+
+      <!-- AYACUCHO -->
+      <div class="ofcard">
+        <div class="ofcard-head">
+          <div class="ofcard-ico">🏛️</div>
+          <div>
+            <div class="ofcard-name">Oficina Regional Ayacucho</div>
+            <div class="ofcard-region">📍 Ayacucho / Ayacucho / Huamanga</div>
+          </div>
+        </div>
+        <div class="ofcard-addr">Urbanización Mariscal Cáceres Mz. K Lte. 02</div>
+        <a class="ofmap-btn" href="https://maps.app.goo.gl/beTppAJdhUhCK1oPA" target="_blank">🗺️ Ver en Google Maps</a>
+      </div>
+
+      <!-- HUANCAVELICA -->
+      <div class="ofcard">
+        <div class="ofcard-head">
+          <div class="ofcard-ico">🏛️</div>
+          <div>
+            <div class="ofcard-name">Oficina Regional Huancavelica</div>
+            <div class="ofcard-region">📍 Huancavelica / Huancavelica / Huancavelica</div>
+          </div>
+        </div>
+        <div class="ofcard-addr">Avenida Andrés Avelino Cáceres N° 301</div>
+        <a class="ofmap-btn" href="https://maps.app.goo.gl/eNbxBvgz3k8s3kdy7" target="_blank">🗺️ Ver en Google Maps</a>
+      </div>
+
+      <!-- JUNIN -->
+      <div class="ofcard">
+        <div class="ofcard-head">
+          <div class="ofcard-ico">🏛️</div>
+          <div>
+            <div class="ofcard-name">Oficina Regional Junín</div>
+            <div class="ofcard-region">📍 Huancayo / Huancayo / Junín</div>
+          </div>
+        </div>
+        <div class="ofcard-addr">Calle San José N° 284</div>
+        <a class="ofmap-btn" href="https://maps.app.goo.gl/n3tAaWSxqL8fZHhp6" target="_blank">🗺️ Ver en Google Maps</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ EVALUACIONES SCREEN ══════════ -->
+  <div class="tabscreen" id="avanceScreen">
+    <div class="tabscreen-hdr">
+      <button class="tabscreen-back" onclick="navGo('inicio')">← Volver al inicio</button>
+      <div class="tabscreen-title">📄 Evaluaciones</div>
+      <div class="tabscreen-sub">Historial de tus pre-evaluaciones</div>
+      <svg class="tabwave" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="tabscreen-body">
+      <!-- Empty state -->
+      <div id="eval-empty" style="text-align:center;padding:50px 20px;">
+        <div style="font-size:56px;margin-bottom:16px;">📋</div>
+        <div style="font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;color:#08287A;margin-bottom:8px;">Sin evaluaciones aún</div>
+        <div style="font-size:13px;color:#7A8DB5;line-height:1.6;margin-bottom:24px;">Completa una pre-evaluación desde el inicio para verla guardada aquí.</div>
+        <button onclick="navGo('inicio')" style="background:linear-gradient(135deg,#F8E136,#FAE96A);color:#08287A;border:none;border-radius:14px;padding:15px 28px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(248,225,54,.35);">🏠 Nueva evaluación</button>
+      </div>
+      <!-- List -->
+      <div id="eval-list" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <span style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#08287A;" id="eval-count">0 evaluaciones</span>
+          <button onclick="clearEvaluaciones()" style="background:none;border:1.5px solid #FCA5A5;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700;color:#DC2626;cursor:pointer;">🗑 Limpiar</button>
+        </div>
+        <div id="eval-cards"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ AYUDA SCREEN ══════════ -->
+  <div class="tabscreen" id="ayudaScreen">
+    <div class="tabscreen-hdr">
+      <button class="tabscreen-back" onclick="navGo('inicio')">← Volver al inicio</button>
+      <div class="tabscreen-title">❓ Ayuda</div>
+      <div class="tabscreen-sub">Preguntas frecuentes y soporte</div>
+      <svg class="tabwave" viewBox="0 0 390 40" fill="none"><path d="M0 40V18C60 5 130 0 195 0C260 0 330 5 390 18V40H0Z" fill="#F0F4FF"/></svg>
+    </div>
+    <div class="tabscreen-body">
+
+      <div style="background:#fff;border-radius:18px;padding:20px;border:1.5px solid #D4DCEF;box-shadow:0 4px 20px rgba(8,40,122,.08);margin-bottom:14px;">
+        <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#08287A;margin-bottom:14px;">💬 Preguntas frecuentes</div>
+
+        <details style="margin-bottom:12px;border:1.5px solid #D4DCEF;border-radius:12px;overflow:hidden;">
+          <summary style="padding:14px;font-size:13.5px;font-weight:700;color:#1A3E9A;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Qué es FormalízateYa? <span>▼</span></summary>
+          <div style="padding:0 14px 14px;font-size:13px;color:#3A4D7A;line-height:1.6;">Es una herramienta gratuita que te ayuda a verificar si tu local cumple los requisitos de seguridad para la venta de GLP (gas).</div>
+        </details>
+
+        <details style="margin-bottom:12px;border:1.5px solid #D4DCEF;border-radius:12px;overflow:hidden;">
+          <summary style="padding:14px;font-size:13.5px;font-weight:700;color:#1A3E9A;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Para qué sirve el DNI? <span>▼</span></summary>
+          <div style="padding:0 14px 14px;font-size:13px;color:#3A4D7A;line-height:1.6;">Tu DNI permite guardar tu avance y presentar el resultado en la oficina de Osinergmin. Tu información es confidencial.</div>
+        </details>
+
+        <details style="margin-bottom:12px;border:1.5px solid #D4DCEF;border-radius:12px;overflow:hidden;">
+          <summary style="padding:14px;font-size:13.5px;font-weight:700;color:#1A3E9A;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Cuáles son las modalidades? <span>▼</span></summary>
+          <div style="padding:0 14px 14px;font-size:13px;color:#3A4D7A;line-height:1.6;">
+            <strong>🗄️ Rack:</strong> hasta 120 kg<br>
+            <strong>🏭 Local con techo:</strong> hasta 5,000 kg<br>
+            <strong>🏗️ Local sin techo:</strong> hasta 50,000 kg
+          </div>
+        </details>
+
+        <details style="border:1.5px solid #D4DCEF;border-radius:12px;overflow:hidden;">
+          <summary style="padding:14px;font-size:13.5px;font-weight:700;color:#1A3E9A;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Qué hago si no apruebo? <span>▼</span></summary>
+          <div style="padding:0 14px 14px;font-size:13px;color:#3A4D7A;line-height:1.6;">Puedes subsanar las observaciones y volver a intentarlo. También puedes acercarte a una oficina de Osinergmin para recibir orientación personalizada.</div>
+        </details>
+      </div>
+
+      <div style="background:#FFF8E1;border:1.5px solid #F8E136;border-radius:14px;padding:16px;margin-bottom:14px;">
+        <div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#7a6000;margin-bottom:8px;">📞 ¿Necesitas más ayuda?</div>
+        <div style="font-size:13px;color:#5a4800;line-height:1.6;">Acércate a la oficina de Osinergmin más cercana. El personal te guiará en el proceso de formalización.</div>
+        <button onclick="navGo('oficinas')" style="margin-top:12px;width:100%;background:linear-gradient(135deg,#08287A,#1A3E9A);color:#fff;border:none;border-radius:12px;padding:13px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;">📍 Ver oficinas</button>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /phone -->
+
+<script>
+// State
+let storage = null;
+let raTransf = null;
+let tcTransfAns = null;
+let tcPublicAns = null;
+let tcMaterials = { techo: null, piso: null, paredes: null };
+let stTransfAns = null;
+let tcCrits = [];
+let tcSubs = [];
+let tcVentAns = null;
+let tcPublicDistOk = true;
+let tcPisosAns = null;
+let stCrits = [];
+let stSubs = [];
+let raCrits = [];
+let stPublicAns = null;
+let stToldoAns = null;
+let stMaterials = { piso: null, paredes: null };
+
+// DNI
+function updDNI(el){ const v=el.value.replace(/\D/g,''); el.value=v; document.getElementById('ctr').textContent=v.length+' / 8'; document.getElementById('ctr').style.color=v.length===8?'#22C55E':''; }
+
+function startApp(){
+  const v=document.getElementById('dniIn').value;
+  if(v.length!==8){ const i=document.getElementById('dniIn'); i.style.borderColor='#EF4444'; i.style.background='#FFF5F5'; i.focus(); setTimeout(()=>{i.style.borderColor='';i.style.background='';},1500); return; }
+  const b=document.getElementById('ctab'); b.innerHTML='✅ ¡Listo! Cargando...'; b.style.background='linear-gradient(135deg,#22C55E,#16A34A)'; b.style.color='#fff';
+  setTimeout(()=>open('m1'),800);
+}
+
+// Modal helpers
+function open(id){ document.getElementById(id).classList.add('on'); }
+function close(id){ document.getElementById(id).classList.remove('on'); }
+function tr(from,to){ close(from); setTimeout(()=>open(to),200); }
+function on(id){ document.getElementById(id).classList.add('on'); }
+function showResult(id){ document.querySelectorAll('.mo').forEach(m=>m.classList.remove('on')); setTimeout(()=>open(id),200); }
+
+// M1 storage pick
+function pickM1(el,type){
+  document.querySelectorAll('#m1 .obtn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel'); storage=type; on('n1');
+}
+function goM1Next(){
+  close('m1');
+  setTimeout(()=>{
+    if(storage==='rack') open('ra_m2');
+    else if(storage==='techo') open('tc_m1');
+    else open('st_m1'); // sin techo flow
+  },200);
+}
+
+// Generic picks
+function pickYN(gid,val){
+  document.querySelectorAll('#'+gid+' .ynb').forEach(b=>b.classList.remove('sel'));
+  event.currentTarget.classList.add('sel');
+  if(gid==='ra_g4') raTransf=val||null;
+  if(gid==='tc_g1') tcVentAns=val||null;
+  if(gid==='tc_g4') tcTransfAns=val||null;
+  if(gid==='tc_g6') tcPublicAns=val||null;
+  if(gid==='tc_g11') tcPisosAns=val||null;
+  if(gid==='st_g2') stTransfAns=val||null;
+  if(gid==='st_g4') stPublicAns=val||null;
+  if(gid==='st_g6') stToldoAns=val||null;
+  if(gid==='st_g7') stMaterials.piso=val||null;
+  if(gid==='st_g8') stMaterials.paredes=val||null;
+}
+function pickOpt(gid,el,val){
+  document.querySelectorAll('#'+gid+' .obtn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  if(gid==='tc_g8') tcMaterials.techo=val;
+  if(gid==='tc_g9') tcMaterials.piso=val;
+  if(gid==='tc_g10') tcMaterials.paredes=val;
+  if(gid==='st_g7o') stMaterials.piso=val;
+  if(gid==='st_g8o') stMaterials.paredes=val;
+}
+function chkField(inputId,btnId){
+  const v=parseFloat(document.getElementById(inputId).value);
+  const b=document.getElementById(btnId);
+  if(!isNaN(v)&&v>0) b.classList.add('on'); else b.classList.remove('on');
+}
+
+// RACK flow
+function raHandleTransf(){
+  close('ra_m4');
+  setTimeout(()=>{ if(raTransf==='no') raFinalize(); else open('ra_m5'); },200);
+}
+function raHandleDist(){
+  const v=parseFloat(document.getElementById('ra_dist').value);
+  if(v < 7.6){
+    if(!raCrits.includes('dist')) raCrits.push('dist');
+  } else {
+    raCrits = raCrits.filter(c=>c!=='dist');
+  }
+  raFinalize();
+}
+function raFinalize(){
+  // Build crits list from answers + dist check
+  const crits = [...raCrits];
+  // retiro: btn2 = no retiro = critical
+  const retiroSel = document.querySelector('#ra_g2 .ynb.sel .ynlbl');
+  const retiroCrit = retiroSel && retiroSel.textContent.includes('No');
+  // taller: btn1 = si taller = critical
+  const tallerSel = document.querySelector('#ra_g3 .ynb.sel .ynlbl');
+  const tallerCrit = tallerSel && tallerSel.textContent.includes('Sí');
+
+  const allCrits = [];
+  if(retiroCrit) allCrits.push('Tu local no tiene retiro (espacio entre la puerta y la vereda). Es un requisito de seguridad para la instalación del rack.');
+  if(tallerCrit) allCrits.push('Hay un taller o negocio que genera chispas cerca de tu local. Esto representa un alto riesgo de explosión con el gas almacenado.');
+  if(crits.includes('dist')) allCrits.push('La distancia al transformador eléctrico es menor a 7.6 metros. El riesgo eléctrico es crítico para la seguridad del almacenamiento.');
+
+  if(allCrits.length > 0){
+    buildRaFail(allCrits);
+    showResult('rFail');
+  } else {
+    showResult('rOk');
+  }
+}
+function buildRaFail(crits){
+  const list = document.getElementById('ra_fail_list');
+  list.innerHTML = crits.map(c=>`<div class="fitem">❌ ${c}</div>`).join('');
+}
+
+// TECHO flow
+function tcHandleVent(){
+  const ans=document.querySelector('#tc_g1 .ynb.sel');
+  if(!ans) return;
+  const isYes = ans.querySelector('.ynlbl')?.textContent?.includes('Sí');
+  tcVentAns = isYes ? 'si' : 'no';
+  close('tc_m1');
+  setTimeout(()=>{ if(isYes) open('tc_m2'); else open('tc_m3'); },200);
+}
+function calcArea(){
+  const w=parseFloat(document.getElementById('tc_vw').value)||0;
+  const h=parseFloat(document.getElementById('tc_vh').value)||0;
+  const a=(w*h).toFixed(2);
+  const res=document.getElementById('area_result');
+  if(w>0&&h>0){ res.style.display='flex'; document.getElementById('area_val').textContent=a; document.getElementById('tc_n2').classList.add('on'); }
+  else { res.style.display='none'; document.getElementById('tc_n2').classList.remove('on'); }
+}
+function tcHandleTransf(){
+  close('tc_m4');
+  setTimeout(()=>{ if(tcTransfAns==='no') open('tc_m6'); else open('tc_m5'); },200);
+}
+function tcHandlePublic(){
+  close('tc_m6');
+  setTimeout(()=>{ if(tcPublicAns==='no') open('tc_m8'); else open('tc_m7'); },200);
+}
+function calcLocal(){
+  const l=parseFloat(document.getElementById('tc_largo').value)||0;
+  const a=parseFloat(document.getElementById('tc_ancho').value)||0;
+  const res=document.getElementById('local_result');
+  if(l>0&&a>0){ res.style.display='flex'; document.getElementById('local_val').textContent=(l*a).toFixed(2); document.getElementById('tc_n14').classList.add('on'); }
+  else { res.style.display='none'; document.getElementById('tc_n14').classList.remove('on'); }
+}
+function tcShowResult(){
+  tcCrits = [];
+  tcSubs  = [];
+
+  // ── CRITS ──────────────────────────────────────────────
+  if(tcVentAns === 'no')
+    tcCrits.push('La ventilación del almacén no es permanente. Se requieren rejas, calados u huecos fijos que no se puedan cerrar.');
+
+  if(tcVentAns === 'si'){
+    const vw=parseFloat(document.getElementById('tc_vw').value)||0;
+    const vh=parseFloat(document.getElementById('tc_vh').value)||0;
+    if(vw*vh < 6) tcCrits.push('El área de ventilación es menor a 6 m². La normativa exige un mínimo de 6 m² de ventilación permanente.');
+  }
+
+  const tallerSel = document.querySelector('#tc_g3 .ynb.sel .ynlbl');
+  if(tallerSel && tallerSel.textContent.includes('Sí'))
+    tcCrits.push('Hay un taller o negocio que genera chispas cerca de tu local. Esto representa un alto riesgo de explosión.');
+
+  if(tcTransfAns === 'si'){
+    const d=parseFloat(document.getElementById('tc_dist').value)||0;
+    if(d < 7.6) tcCrits.push('La distancia al transformador eléctrico es menor a 7.6 metros. El riesgo eléctrico es crítico.');
+  }
+
+  if(tcPublicAns === 'si'){
+    const dp=parseFloat(document.getElementById('tc_pub_dist').value)||0;
+    if(dp < 3) tcCrits.push('La distancia al lugar de afluencia de público es menor a 3 metros. Se requiere mayor distancia de separación.');
+  }
+
+  // ── SUBSANABLES ────────────────────────────────────────
+  if(tcMaterials.techo && tcMaterials.techo !== 'noble')
+    tcSubs.push('El TECHO es de material inflamable (madera, estera, plástico). Debe ser reemplazado por material no inflamable (ladrillo/cemento).');
+  if(tcMaterials.piso && tcMaterials.piso !== 'noble')
+    tcSubs.push('El PISO es de material inadecuado. Se recomienda cemento, concreto o loseta para cumplir con la normativa.');
+  if(tcMaterials.paredes && tcMaterials.paredes !== 'noble')
+    tcSubs.push('Las PAREDES son de material inflamable (madera, estera, drywall). Deben ser de material noble (ladrillo/cemento).');
+
+  const puertaSel = document.querySelector('#tc_g12 .ynb.sel .ynlbl');
+  if(puertaSel && puertaSel.textContent.includes('Sí'))
+    tcSubs.push('Se detectó una segunda puerta o ingreso al almacén. La normativa solo permite UN ingreso al almacén. La puerta o ingreso adicional debe ser clausurado antes de la visita de supervisión.');
+
+  const cablesSel = document.querySelector('#tc_g13 .ynb.sel .ynlbl');
+  if(cablesSel && cablesSel.textContent.includes('Sí'))
+    tcSubs.push('Hay cables eléctricos, enchufes o tomacorrientes dentro del almacén. Deben ser retirados o aislados correctamente.');
+
+  // ── CAPACITY (only for approved results) ──────────────
+  const capResult = (tcCrits.length === 0) ? calcTcCapacity() : null;
+  buildTcResult(capResult);
+}
+
+function calcTcCapacity(){
+  // 1. Ventilation capacity restriction
+  let capVent = Infinity;
+  if(tcVentAns === 'si'){
+    const vw=parseFloat(document.getElementById('tc_vw').value)||0;
+    const vh=parseFloat(document.getElementById('tc_vh').value)||0;
+    const area = vw * vh;
+    if(area >= 30)      capVent = 5000;
+    else if(area >= 24) capVent = 4000;
+    else if(area >= 18) capVent = 3000;
+    else if(area >= 12) capVent = 2000;
+    else if(area >= 6)  capVent = 1000;
+    else capVent = 0;
+  }
+
+  // 2. Public place distance capacity restriction
+  let capPublic = Infinity;
+  if(tcPublicAns === 'si'){
+    const dp=parseFloat(document.getElementById('tc_pub_dist').value)||0;
+    if(dp >= 20)      capPublic = 50000;
+    else if(dp >= 16) capPublic = 20000;
+    else if(dp >= 12) capPublic = 10000;
+    else if(dp >= 8)  capPublic = 6000;
+    else if(dp >= 6)  capPublic = 3000;
+    else if(dp >= 4)  capPublic = 1000;
+    else if(dp >= 3)  capPublic = 500;
+    else capPublic = 0;
+  }
+
+  // 3. Floor area dimension calculation
+  const largo = parseFloat(document.getElementById('tc_largo').value)||0;
+  const ancho = parseFloat(document.getElementById('tc_ancho').value)||0;
+  if(largo < 2 || ancho < 2){
+    return { approved: false, reason: 'El área del almacén es menor a 2 m × 2 m, lo cual es el mínimo requerido por la normativa. El local no puede ser aprobado.' };
+  }
+
+  // Despeje tiers: find the highest capacity that physically fits
+  const despejeTiers = [
+    { maxKg: 500,  despeje: 1 },
+    { maxKg: 1000, despeje: 2 },
+    { maxKg: 3000, despeje: 3 },
+    { maxKg: 4500, despeje: 4 },
+    { maxKg: 5000, despeje: 5 },
+  ];
+  let capDimension = 0;
+  for(const tier of despejeTiers){
+    const lu = largo - tier.despeje * 2;
+    const au = ancho - tier.despeje * 2;
+    if(lu <= 0 || au <= 0) break;
+    const balonesNivel = Math.floor(lu / 0.31) * Math.floor(au / 0.31);
+    const capTier = balonesNivel * 2 * 10; // 2 levels × 10 kg
+    if(capTier >= tier.maxKg){
+      capDimension = tier.maxKg;
+    } else {
+      capDimension = capTier;
+      break;
+    }
+  }
+
+  // 4. Pisos superiores restriction (Botón 01 = Sí = 300 kg máx)
+  let capPisos = Infinity;
+  if(tcPisosAns === 'si') capPisos = 300;
+
+  // 5. Hard cap for local con techo
+  const CAP_MAX = 5000;
+
+  const candidates = [capVent, capPublic, capDimension, capPisos, CAP_MAX].filter(v => v !== Infinity && v > 0);
+  if(candidates.length === 0) return { approved: false, reason: 'No es posible calcular una capacidad válida con las medidas indicadas.' };
+  const finalCap = Math.min(...candidates);
+  return { approved: true, kg: finalCap };
+}
+
+function buildTcResult(capResult){
+  // Handle dimension/area rejection
+  if(capResult && !capResult.approved){
+    tcCrits.push(capResult.reason);
+  }
+
+  if(tcCrits.length > 0){
+    const hasSubs = tcSubs.length > 0;
+    let inner = tcCrits.map(c=>`<div class="fitem">❌ ${c}</div>`).join('');
+    if(hasSubs){
+      inner += `<div style="background:#FFF8E1;border:1.5px solid #F8E136;border-radius:12px;padding:13px 14px;margin:14px 0 8px;font-size:13px;color:#5a4800;line-height:1.5;font-weight:600;">Adicionalmente tu almacén a adquirir debe cumplir con los siguientes puntos al momento de la visita de supervisión:</div>`;
+      inner += tcSubs.map(s=>`<div class="subitem">• ${s}</div>`).join('');
+    }
+    document.getElementById('tc_fail_body').innerHTML = inner;
+    showResult('tcFail');
+    return;
+  }
+
+  // APPROVED — update capacity display
+  const kg = capResult.kg;
+  document.getElementById('tcCapVal').textContent = kg.toLocaleString('es-PE') + ' kg';
+
+  if(tcSubs.length > 0){
+    setTcOkStyle('amber');
+    document.getElementById('tc_ok_subs').innerHTML = tcSubs.map(s=>`<div class="subitem-ok">• ${s}</div>`).join('');
+    document.getElementById('tc_ok_subs_section').style.display = 'block';
+    document.getElementById('tc_ok_nosubs_msg').style.display = 'none';
+  } else {
+    setTcOkStyle('green');
+    document.getElementById('tc_ok_subs_section').style.display = 'none';
+    document.getElementById('tc_ok_nosubs_msg').style.display = 'block';
+  }
+  showResult('tcOk');
+}
+
+function setTcOkStyle(mode){
+  const hdr  = document.getElementById('tcOk_hdr');
+  const card = document.getElementById('tcOk_card');
+  if(mode === 'green'){
+    hdr.style.background = 'linear-gradient(145deg,#064e26,#15803D)';
+    card.style.boxShadow = '0 8px 32px rgba(34,197,94,.12)';
+    card.style.border = '2px solid #86EFAC';
+  } else {
+    hdr.style.background = 'linear-gradient(145deg,#7a6000,#ca8a04)';
+    card.style.boxShadow = '0 8px 32px rgba(202,138,4,.15)';
+    card.style.border = '2px solid #FDE68A';
+  }
+}
+
+// SIN TECHO flow
+function stHandleTransf(){
+  close('st_m2');
+  setTimeout(()=>{ if(stTransfAns==='no') open('st_m4'); else open('st_m3'); },200);
+}
+function stHandlePublic(){
+  close('st_m4');
+  setTimeout(()=>{ if(stPublicAns==='no') open('st_m6'); else open('st_m5'); },200);
+}
+function calcST(){
+  const l=parseFloat(document.getElementById('st_largo').value)||0;
+  const a=parseFloat(document.getElementById('st_ancho').value)||0;
+  const res=document.getElementById('st_local_result');
+  if(l>0&&a>0){ res.style.display='flex'; document.getElementById('st_local_val').textContent=(l*a).toFixed(2); document.getElementById('st_n10').classList.add('on'); }
+  else { res.style.display='none'; document.getElementById('st_n10').classList.remove('on'); }
+}
+function stShowResult(){
+  stCrits = [];
+  stSubs  = [];
+
+  // ── CRÍTICAS ────────────────────────────────────────────
+  const tallerSel = document.querySelector('#st_g1 .ynb.sel .ynlbl');
+  if(tallerSel && tallerSel.textContent.includes('Sí'))
+    stCrits.push('Hay un taller o negocio que genera chispas cerca de tu local. Esto representa un alto riesgo de explosión con el gas almacenado.');
+
+  if(stTransfAns === 'si'){
+    const d = parseFloat(document.getElementById('st_dist').value)||0;
+    if(d < 7.6) stCrits.push('La distancia al transformador eléctrico es menor a 7.6 metros. El riesgo eléctrico es crítico para la seguridad del almacenamiento.');
+  }
+
+  if(stPublicAns === 'si'){
+    const dp = parseFloat(document.getElementById('st_pub_dist').value)||0;
+    if(dp < 3) stCrits.push('La distancia al lugar de afluencia de público es menor a 3 metros. Se requiere mayor distancia de separación por normativa.');
+  }
+
+  // ── SUBSANABLES ──────────────────────────────────────────
+  if(stToldoAns === 'si')
+    stSubs.push('Se indicó el uso de un toldo o techo temporal sobre el área. La normativa exige que el área de balones esté a cielo abierto, sin coberturas inflamables. Debe retirar el toldo antes de la visita de supervisión.');
+
+  if(stMaterials.piso && stMaterials.piso !== 'noble')
+    stSubs.push('El PISO es de material inadecuado. Se recomienda cemento, concreto o loseta para cumplir con la normativa.');
+
+  if(stMaterials.paredes && stMaterials.paredes !== 'noble')
+    stSubs.push('Las PAREDES son de material inflamable (madera, estera, drywall). Deben ser de material noble (ladrillo/cemento).');
+
+  const cablesSel = document.querySelector('#st_g9 .ynb.sel .ynlbl');
+  if(cablesSel && cablesSel.textContent.includes('Sí'))
+    stSubs.push('Hay cables eléctricos, enchufes o tomacorrientes dentro del área. Deben ser retirados o aislados correctamente antes de la visita de supervisión.');
+
+  // ── CAPACITY (only for approved) ────────────────────────
+  const capResult = (stCrits.length === 0) ? calcStCapacity() : null;
+  buildStResult(capResult);
+}
+
+function calcStCapacity(){
+  // 1. Public place distance restriction
+  let capPublic = Infinity;
+  if(stPublicAns === 'si'){
+    const dp = parseFloat(document.getElementById('st_pub_dist').value)||0;
+    if(dp >= 20)      capPublic = 50000;
+    else if(dp >= 16) capPublic = 20000;
+    else if(dp >= 12) capPublic = 10000;
+    else if(dp >= 8)  capPublic = 6000;
+    else if(dp >= 6)  capPublic = 3000;
+    else if(dp >= 4)  capPublic = 1000;
+    else if(dp >= 3)  capPublic = 500;
+    else capPublic = 0;
+  }
+
+  // 2. Floor area dimension calculation
+  const largo = parseFloat(document.getElementById('st_largo').value)||0;
+  const ancho = parseFloat(document.getElementById('st_ancho').value)||0;
+
+  if(largo < 2 || ancho < 2){
+    return { approved: false, reason: 'El área del almacén es menor a 2 m × 2 m, lo cual es el mínimo requerido por la normativa. El local no puede ser aprobado.' };
+  }
+
+  // Despeje tiers for local sin techo (wider tiers vs con techo)
+  const despejeTiers = [
+    { maxKg:    500, despeje:  1 },
+    { maxKg:   1000, despeje:  2 },
+    { maxKg:   3000, despeje:  3 },
+    { maxKg:   4500, despeje:  4 },
+    { maxKg:   6000, despeje:  5 },
+    { maxKg:  10000, despeje:  6 },
+    { maxKg:  20000, despeje:  8 },
+    { maxKg:  50000, despeje: 10 },
+  ];
+
+  let capDimension = 0;
+  for(const tier of despejeTiers){
+    const lu = largo - tier.despeje * 2;
+    const au = ancho  - tier.despeje * 2;
+    if(lu <= 0 || au <= 0) break; // doesn't fit with this despeje
+
+    let balonesNivel = Math.floor(lu / 0.31) * Math.floor(au / 0.31);
+
+    // Pasillo rule: if capacity would exceed 2,000 kg add 2 m aisles
+    // Estimate raw capacity first
+    let rawCap = balonesNivel * 2 * 10;
+    if(rawCap > 2000){
+      // Add a 2 m aisle down the middle (conservative: subtract one 2m strip)
+      const luAisle = lu - 2;
+      const auAisle = au - 2;
+      if(luAisle > 0 && auAisle > 0){
+        balonesNivel = Math.floor(luAisle / 0.31) * Math.floor(auAisle / 0.31);
+        rawCap = balonesNivel * 2 * 10;
+      } else {
+        rawCap = 0;
+      }
+    }
+
+    if(rawCap >= tier.maxKg){
+      capDimension = tier.maxKg;
+    } else {
+      capDimension = rawCap;
+      break;
+    }
+  }
+
+  // 3. Hard cap for local sin techo
+  const CAP_MAX = 50000;
+
+  const candidates = [capPublic, capDimension, CAP_MAX].filter(v => v !== Infinity && v > 0);
+  if(candidates.length === 0) return { approved: false, reason: 'No es posible calcular una capacidad válida con las medidas indicadas.' };
+  const finalCap = Math.min(...candidates);
+  return { approved: true, kg: finalCap };
+}
+
+function buildStResult(capResult){
+  // Handle area rejection
+  if(capResult && !capResult.approved){
+    stCrits.push(capResult.reason);
+  }
+
+  if(stCrits.length > 0){
+    const hasSubs = stSubs.length > 0;
+    let inner = stCrits.map(c => `<div class="fitem">❌ ${c}</div>`).join('');
+    if(hasSubs){
+      inner += `<div style="background:#FFF8E1;border:1.5px solid #F8E136;border-radius:12px;padding:13px 14px;margin:14px 0 8px;font-size:13px;color:#5a4800;line-height:1.5;font-weight:600;">Adicionalmente tu almacén a adquirir debe cumplir con los siguientes puntos al momento de la visita de supervisión:</div>`;
+      inner += stSubs.map(s => `<div class="subitem">• ${s}</div>`).join('');
+    }
+    document.getElementById('st_fail_body').innerHTML = inner;
+    showResult('stFail');
+    return;
+  }
+
+  // APPROVED — update capacity display
+  const kg = capResult.kg;
+  document.getElementById('stCapVal').textContent = kg.toLocaleString('es-PE') + ' kg';
+
+  if(stSubs.length > 0){
+    setStOkStyle('amber');
+    document.getElementById('st_ok_subs').innerHTML = stSubs.map(s => `<div class="subitem-ok">• ${s}</div>`).join('');
+    document.getElementById('st_ok_subs_section').style.display = 'block';
+    document.getElementById('st_ok_nosubs_msg').style.display  = 'none';
+  } else {
+    setStOkStyle('green');
+    document.getElementById('st_ok_subs_section').style.display = 'none';
+    document.getElementById('st_ok_nosubs_msg').style.display   = 'block';
+  }
+  showResult('stOk');
+}
+
+function setStOkStyle(mode){
+  const hdr  = document.getElementById('stOk_hdr');
+  const card = document.getElementById('stOk_card');
+  if(mode === 'green'){
+    hdr.style.background  = 'linear-gradient(145deg,#064e26,#15803D)';
+    card.style.boxShadow  = '0 8px 32px rgba(34,197,94,.12)';
+    card.style.border     = '2px solid #86EFAC';
+  } else {
+    hdr.style.background  = 'linear-gradient(145deg,#7a6000,#ca8a04)';
+    card.style.boxShadow  = '0 8px 32px rgba(202,138,4,.15)';
+    card.style.border     = '2px solid #FDE68A';
+  }
+}
+
+
+// NAVIGATION
+const NAV_SCREENS = {
+  inicio:   null,
+  avance:   'avanceScreen',
+  oficinas: 'ofScreen',
+  ayuda:    'ayudaScreen'
+};
+
+function navGo(tab){
+  // Update nav active state
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('a'));
+  const navMap = {inicio:'navInicio', avance:'navAvance', oficinas:'navOficinas', ayuda:'navAyuda'};
+  const activeNav = document.getElementById(navMap[tab]);
+  if(activeNav) activeNav.classList.add('a');
+
+  // Hide all tab screens
+  Object.values(NAV_SCREENS).forEach(id => {
+    if(id) document.getElementById(id).classList.remove('on');
+  });
+
+  // Show selected screen
+  if(NAV_SCREENS[tab]){
+    if(tab === 'avance') updateAvanceScreen();
+    document.getElementById(NAV_SCREENS[tab]).classList.add('on');
+  }
+}
+
+// ══════════════════════════════════════════
+// EVALUACIONES — historial en memoria + PDF
+// ══════════════════════════════════════════
+let evaluaciones = [];
+
+const TIPOS = { rack:'🗄️ Rack / Jaula', techo:'🏭 Local con techo', sin_techo:'🏗️ Local sin techo' };
+const RESULT_LABELS = {
+  rOk:   { ok: true,  label: 'APROBADO',     color: '#15803D' },
+  rFail: { ok: false, label: 'NO APROBADO',  color: '#DC2626' },
+  tcOk:  { ok: true,  label: 'APROBADO',     color: '#15803D' },
+  tcFail:{ ok: false, label: 'NO APROBADO',  color: '#DC2626' },
+  stOk:  { ok: true,  label: 'APROBADO',     color: '#15803D' },
+  stFail:{ ok: false, label: 'NO APROBADO',  color: '#DC2626' },
+};
+
+function saveEval(resultId){
+  const dni = document.getElementById('dniIn').value || '—';
+  const tipo = TIPOS[storage] || '—';
+  const res  = RESULT_LABELS[resultId];
+  const now  = new Date();
+  const fecha = now.toLocaleDateString('es-PE', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const hora  = now.toLocaleTimeString('es-PE', { hour:'2-digit', minute:'2-digit' });
+
+  // Collect capacidad if approved
+  let capacidad = null;
+  if(resultId === 'rOk')  capacidad = '120 kg';
+  if(resultId === 'tcOk') capacidad = document.getElementById('tcCapVal')?.textContent || '—';
+  if(resultId === 'stOk') capacidad = document.getElementById('stCapVal')?.textContent || '—';
+
+  // Collect observaciones if failed
+  let observaciones = [];
+  if(resultId === 'rFail'){
+    document.querySelectorAll('#ra_fail_list .fitem').forEach(el => observaciones.push(el.textContent.replace('❌','').trim()));
+  }
+  if(resultId === 'tcFail'){
+    document.querySelectorAll('#tc_fail_body .fitem').forEach(el => observaciones.push(el.textContent.replace('❌','').trim()));
+  }
+  if(resultId === 'stFail'){
+    document.querySelectorAll('#st_fail_body .fitem').forEach(el => observaciones.push(el.textContent.replace('❌','').trim()));
+  }
+
+  // Collect subsanables if approved with warnings
+  let subsanables = [];
+  if(resultId === 'tcOk'){
+    document.querySelectorAll('#tc_ok_subs .subitem-ok').forEach(el => subsanables.push(el.textContent.replace('•','').trim()));
+  }
+  if(resultId === 'stOk'){
+    document.querySelectorAll('#st_ok_subs .subitem-ok').forEach(el => subsanables.push(el.textContent.replace('•','').trim()));
+  }
+
+  const ev = { id: Date.now(), dni, tipo, resultId, aprobado: res.ok, label: res.label, fecha, hora, capacidad, observaciones, subsanables };
+  evaluaciones.unshift(ev);
+
+  // Flash feedback on button
+  const btn = event.currentTarget;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ ¡Guardado!';
+  btn.style.background = '#DCFCE7';
+  btn.style.borderColor = '#86EFAC';
+  btn.style.color = '#15803D';
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background=''; btn.style.borderColor=''; btn.style.color=''; }, 1800);
+}
+
+function updateAvanceScreen(){
+  if(evaluaciones.length === 0){
+    document.getElementById('eval-empty').style.display = 'block';
+    document.getElementById('eval-list').style.display  = 'none';
+    return;
+  }
+  document.getElementById('eval-empty').style.display = 'none';
+  document.getElementById('eval-list').style.display  = 'block';
+  document.getElementById('eval-count').textContent = evaluaciones.length === 1 ? '1 evaluación' : `${evaluaciones.length} evaluaciones`;
+
+  const cards = evaluaciones.map((ev, i) => {
+    const isOk = ev.aprobado;
+    const borderColor = isOk ? '#86EFAC' : '#FCA5A5';
+    const badgeBg     = isOk ? '#DCFCE7' : '#FEF2F2';
+    const badgeColor  = isOk ? '#15803D' : '#DC2626';
+    const icon        = isOk ? '✅' : '❌';
+
+    let extraHtml = '';
+    if(isOk && ev.capacidad){
+      extraHtml += `<div style="background:linear-gradient(135deg,#08287A,#1A3E9A);border-radius:10px;padding:10px 14px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:11px;color:rgba(255,255,255,.7);">Capacidad máxima</span>
+        <span style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:#F8E136;">${ev.capacidad}</span>
+      </div>`;
+    }
+    if(!isOk && ev.observaciones.length > 0){
+      const obs = ev.observaciones.map(o => `<div style="font-size:11.5px;color:#7f1d1d;padding:3px 0;border-bottom:1px solid #FEE2E2;">❌ ${o}</div>`).join('');
+      extraHtml += `<div style="background:#FEF2F2;border-radius:10px;padding:10px 12px;margin-top:10px;">${obs}</div>`;
+    }
+    if(isOk && ev.subsanables.length > 0){
+      const subs = ev.subsanables.map(s => `<div style="font-size:11.5px;color:#78350f;padding:3px 0;">• ${s}</div>`).join('');
+      extraHtml += `<div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:10px 12px;margin-top:10px;"><div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:4px;">⚠️ Requisitos para visita:</div>${subs}</div>`;
+    }
+
+    return `<div style="background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;border:1.5px solid ${borderColor};box-shadow:0 4px 16px rgba(8,40,122,.07);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div>
+          <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#08287A;">${ev.tipo}</div>
+          <div style="font-size:11px;color:#7A8DB5;margin-top:2px;">DNI: ${ev.dni} &nbsp;·&nbsp; ${ev.fecha} ${ev.hora}</div>
+        </div>
+        <div style="background:${badgeBg};color:${badgeColor};border-radius:20px;padding:4px 10px;font-size:11px;font-weight:800;">${icon} ${ev.label}</div>
+      </div>
+      ${extraHtml}
+      <button onclick="downloadPDF(${i})" style="margin-top:10px;width:100%;background:#EEF3FF;color:#08287A;border:1.5px solid #D4DCEF;border-radius:10px;padding:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">📥 Descargar PDF</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('eval-cards').innerHTML = cards;
+}
+
+function clearEvaluaciones(){
+  if(!confirm('¿Eliminar todas las evaluaciones guardadas?')) return;
+  evaluaciones = [];
+  updateAvanceScreen();
+}
+
+function downloadPDF(index){
+  const ev = evaluaciones[index];
+  if(!ev) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  const W = 210, pad = 20;
+
+  // Header background
+  doc.setFillColor(8, 40, 122);
+  doc.rect(0, 0, W, 45, 'F');
+
+  // Logo area
+  doc.setFillColor(255, 255, 255, 30);
+  doc.roundedRect(pad, 8, 22, 22, 4, 4, 'F');
+  doc.setFontSize(16);
+  doc.text('🏪', pad + 5.5, 22);
+
+  // App name
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(7);
+  doc.setFont('helvetica','normal');
+  doc.text('MUNICIPALIDAD', pad + 28, 14);
+  doc.setFontSize(14);
+  doc.setFont('helvetica','bold');
+  doc.text('FormalizateYa', pad + 28, 22);
+
+  // Result badge top right
+  const isOk = ev.aprobado;
+  doc.setFillColor(isOk ? 34 : 220, isOk ? 197 : 38, isOk ? 94 : 38);
+  doc.roundedRect(W - pad - 40, 10, 40, 12, 3, 3, 'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(9);
+  doc.setFont('helvetica','bold');
+  doc.text(isOk ? 'APROBADO' : 'NO APROBADO', W - pad - 38, 18);
+
+  // Date subtitle
+  doc.setTextColor(180, 200, 255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica','normal');
+  doc.text(`Pre-evaluacion de seguridad  |  ${ev.fecha} ${ev.hora}`, pad, 36);
+
+  // White body
+  doc.setFillColor(240, 244, 255);
+  doc.rect(0, 45, W, 252, 'F');
+
+  let y = 58;
+
+  // Section: Datos
+  doc.setFillColor(255,255,255);
+  doc.roundedRect(pad, y, W - pad*2, 32, 4, 4, 'F');
+  doc.setTextColor(8, 40, 122);
+  doc.setFontSize(10);
+  doc.setFont('helvetica','bold');
+  doc.text('Datos del solicitante', pad + 6, y + 9);
+  doc.setDrawColor(212, 220, 239);
+  doc.line(pad + 6, y + 12, W - pad - 6, y + 12);
+  doc.setFontSize(9);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(58, 77, 122);
+  doc.text('DNI:', pad + 6, y + 21);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(8, 40, 122);
+  doc.text(ev.dni, pad + 22, y + 21);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(58, 77, 122);
+  doc.text('Modalidad:', pad + 70, y + 21);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(8, 40, 122);
+  doc.text(ev.tipo.replace(/[^\x00-\x7F]/g,'').trim(), pad + 96, y + 21);
+  y += 40;
+
+  // Section: Resultado
+  const resColor = isOk ? [21, 128, 61] : [220, 38, 38];
+  doc.setFillColor(...resColor);
+  doc.roundedRect(pad, y, W - pad*2, 28, 4, 4, 'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(13);
+  doc.setFont('helvetica','bold');
+  const resText = isOk ? 'RESULTADO: LOCAL APROBADO' : 'RESULTADO: LOCAL NO APROBADO';
+  doc.text(resText, W/2, y + 11, { align:'center' });
+  doc.setFontSize(8);
+  doc.setFont('helvetica','normal');
+  const subText = isOk ? 'El local cumple los requisitos criticos de seguridad.' : 'El local no cumple uno o mas requisitos criticos.';
+  doc.text(subText, W/2, y + 20, { align:'center' });
+  y += 36;
+
+  // Section: Capacidad (if approved)
+  if(isOk && ev.capacidad){
+    doc.setFillColor(8, 40, 122);
+    doc.roundedRect(pad, y, W - pad*2, 30, 4, 4, 'F');
+    doc.setTextColor(180, 200, 255);
+    doc.setFontSize(8);
+    doc.setFont('helvetica','normal');
+    doc.text('CAPACIDAD MAXIMA AUTORIZADA', W/2, y + 9, { align:'center' });
+    doc.setTextColor(248, 225, 54);
+    doc.setFontSize(20);
+    doc.setFont('helvetica','bold');
+    doc.text(ev.capacidad, W/2, y + 22, { align:'center' });
+    y += 38;
+  }
+
+  // Section: Observaciones (if failed)
+  if(!isOk && ev.observaciones.length > 0){
+    doc.setFillColor(255,255,255);
+    const obsH = 18 + ev.observaciones.length * 12;
+    doc.roundedRect(pad, y, W - pad*2, obsH, 4, 4, 'F');
+    doc.setTextColor(220, 38, 38);
+    doc.setFontSize(9);
+    doc.setFont('helvetica','bold');
+    doc.text('Observaciones criticas:', pad + 6, y + 9);
+    doc.setFont('helvetica','normal');
+    doc.setTextColor(127, 29, 29);
+    doc.setFontSize(8.5);
+    ev.observaciones.forEach((obs, i) => {
+      doc.text(`x  ${obs.replace(/[^\x00-\x7F]/g,'').trim()}`, pad + 8, y + 18 + i * 12);
+    });
+    y += obsH + 8;
+  }
+
+  // Section: Subsanables (if approved with warnings)
+  if(isOk && ev.subsanables.length > 0){
+    doc.setFillColor(255, 251, 235);
+    const subH = 18 + ev.subsanables.length * 12;
+    doc.roundedRect(pad, y, W - pad*2, subH, 4, 4, 'F');
+    doc.setTextColor(146, 64, 14);
+    doc.setFontSize(9);
+    doc.setFont('helvetica','bold');
+    doc.text('Requisitos para la visita de supervision:', pad + 6, y + 9);
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(8.5);
+    ev.subsanables.forEach((s, i) => {
+      doc.text(`-  ${s.replace(/[^\x00-\x7F]/g,'').trim()}`, pad + 8, y + 18 + i * 12);
+    });
+    y += subH + 8;
+  }
+
+  // Section: Siguiente paso
+  doc.setFillColor(240, 253, 244);
+  doc.setDrawColor(134, 239, 172);
+  doc.roundedRect(pad, y, W - pad*2, 28, 4, 4, 'F');
+  doc.setTextColor(20, 83, 45);
+  doc.setFontSize(9);
+  doc.setFont('helvetica','bold');
+  doc.text('Siguiente paso:', pad + 6, y + 10);
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(8.5);
+  doc.text('Acercate a una oficina de Osinergmin con tu DNI y este documento para iniciar', pad + 6, y + 18);
+  doc.text('los tramites documentarios de formalizacion.', pad + 6, y + 24);
+  y += 36;
+
+  // Footer
+  doc.setFillColor(8, 40, 122);
+  doc.rect(0, 287, W, 10, 'F');
+  doc.setTextColor(180, 200, 255);
+  doc.setFontSize(7);
+  doc.setFont('helvetica','normal');
+  doc.text('FormalízateYa — Documento generado automaticamente. Solo para uso referencial.', W/2, 293, { align:'center' });
+
+  const filename = `evaluacion_${ev.dni}_${ev.fecha.replace(/\//g,'-')}.pdf`;
+  doc.save(filename);
+}
+
+// OFICINAS
+function toggleOficinas(){
+  // Close any open result screens first
+  document.querySelectorAll('.ro').forEach(r => r.classList.remove('on'));
+  navGo('oficinas');
+}
+function closeOficinas(){ navGo('inicio'); }
+
+// Reset
+function resetAll(){
+  storage=null; raTransf=null; tcTransfAns=null; tcPublicAns=null;
+  tcMaterials={techo:null,piso:null,paredes:null};
+  document.querySelectorAll('.mo,.ro').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.obtn,.ynb').forEach(b=>b.classList.remove('sel'));
+  const b=document.getElementById('ctab'); b.innerHTML='Guardar DNI y Empezar <span>→</span>'; b.style.background=''; b.style.color='';
+  document.getElementById('dniIn').value=''; document.getElementById('ctr').textContent='0 / 8';
+  stTransfAns=null; stPublicAns=null; stToldoAns=null; stMaterials={piso:null,paredes:null}; raCrits=[]; tcCrits=[]; tcSubs=[]; tcVentAns=null; tcPublicDistOk=true; tcPisosAns=null; stCrits=[]; stSubs=[];
+  ['ra_dist','tc_dist','tc_pub_dist','tc_vw','tc_vh','tc_largo','tc_ancho','st_dist','st_pub_dist','st_largo','st_ancho'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('area_result').style.display='none';
+  const lr=document.getElementById('local_result'); if(lr) lr.style.display='none';
+  const slr=document.getElementById('st_local_result'); if(slr) slr.style.display='none';
+}
+</script>
+</body>
+</html>
