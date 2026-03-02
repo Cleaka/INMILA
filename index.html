@@ -10,7 +10,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FormalízateYa</title>
+<title>INMILA</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
@@ -1302,8 +1302,8 @@ body::after{content:'';position:fixed;bottom:-100px;right:-80px;width:320px;heig
         <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:#08287A;margin-bottom:14px;">💬 Preguntas frecuentes</div>
 
         <details style="margin-bottom:12px;border:1.5px solid #D4DCEF;border-radius:12px;overflow:hidden;">
-          <summary style="padding:14px;font-size:13.5px;font-weight:700;color:#1A3E9A;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Qué es FormalízateYa? <span>▼</span></summary>
-          <div style="padding:0 14px 14px;font-size:13px;color:#3A4D7A;line-height:1.6;">Es una herramienta gratuita que te ayuda a verificar si tu local cumple los requisitos de seguridad para la venta de GLP (gas).</div>
+          <summary style="padding:14px;font-size:13.5px;font-weight:700;color:#1A3E9A;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Qué es INMILA? <span>▼</span></summary>
+          <div style="padding:0 14px 14px;font-size:13px;color:#3A4D7A;line-height:1.6;">Es una Innovación Mixta de Legabilidad Aplicada gratuita que te ayuda a verificar si tu local cumple los requisitos de seguridad para la venta de GLP (gas).</div>
         </details>
 
         <details style="margin-bottom:12px;border:1.5px solid #D4DCEF;border-radius:12px;overflow:hidden;">
@@ -2009,7 +2009,7 @@ function downloadPDF(index){
   doc.text('MUNICIPALIDAD', pad + 28, 14);
   doc.setFontSize(14);
   doc.setFont('helvetica','bold');
-  doc.text('FormalizateYa', pad + 28, 22);
+  doc.text('INMILA', pad + 28, 22);
 
   // Result badge top right
   const isOk = ev.aprobado;
@@ -2141,7 +2141,7 @@ function downloadPDF(index){
   doc.setTextColor(180, 200, 255);
   doc.setFontSize(7);
   doc.setFont('helvetica','normal');
-  doc.text('FormalízateYa — Documento generado automaticamente. Solo para uso referencial.', W/2, 293, { align:'center' });
+  doc.text('INMILA — Documento generado automaticamente. Solo para uso referencial.', W/2, 293, { align:'center' });
 
   const filename = `evaluacion_${ev.dni}_${ev.fecha.replace(/\//g,'-')}.pdf`;
   doc.save(filename);
@@ -2169,7 +2169,9 @@ function resetAll(){
   document.getElementById('area_result').style.display='none';
   const lr=document.getElementById('local_result'); if(lr) lr.style.display='none';
   const slr=document.getElementById('st_local_result'); if(slr) slr.style.display='none';
+  
 }
 </script>
 </body>
+
 </html>
