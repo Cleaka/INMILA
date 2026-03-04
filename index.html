@@ -2414,14 +2414,23 @@ function buildDatosSheets(resultadoLabel) {
 // Envía los datos al endpoint de Google Sheets (se llama desde showResult vía los botones de resultado)
 function enviarASheets(resultadoLabel) {
   const datos = buildDatosSheets(resultadoLabel);
+  
   fetch(URL_SHEETS, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      // CAMBIO AQUÍ: Usamos text/plain para evitar el bloqueo del navegador
+      'Content-Type': 'text/plain;charset=utf-8' 
+    },
     body: JSON.stringify(datos)
-  }).catch(error => console.error('Error al enviar a Sheets:', error));
+  }).then(() => {
+    console.log("Datos enviados (sin confirmación de lectura por no-cors)");
+  }).catch(error => {
+    console.error('Error al enviar a Sheets:', error);
+  });
 }
 </script>
 </body>
 
 </html>
+
