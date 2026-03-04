@@ -1372,7 +1372,20 @@ function open(id){ document.getElementById(id).classList.add('on'); }
 function close(id){ document.getElementById(id).classList.remove('on'); }
 function tr(from,to){ close(from); setTimeout(()=>open(to),200); }
 function on(id){ document.getElementById(id).classList.add('on'); }
-function showResult(id){ document.querySelectorAll('.mo').forEach(m=>m.classList.remove('on')); setTimeout(()=>open(id),200); }
+function showResult(id){
+  document.querySelectorAll('.mo').forEach(m=>m.classList.remove('on'));
+  setTimeout(()=>open(id),200);
+  // Enviar a Sheets con el resultado correspondiente
+  const resultLabels = {
+    rOk:   'APROBADO',
+    rFail:  'NO APROBADO',
+    tcOk:   'APROBADO',
+    tcFail: 'NO APROBADO',
+    stOk:   'APROBADO',
+    stFail: 'NO APROBADO'
+  };
+  enviarASheets(resultLabels[id] || id);
+}
 
 // M1 storage pick
 function pickM1(el,type){
@@ -1908,7 +1921,7 @@ function saveEval(resultId){
     document.querySelectorAll('#st_fail_body .fitem').forEach(el => observaciones.push(el.textContent.replace('❌','').trim()));
   }
 
-  // Collect subsanables if approved with warnings
+  // Collect subsanables — approved-with-warnings AND inside fail screens
   let subsanables = [];
   if(resultId === 'tcOk'){
     document.querySelectorAll('#tc_ok_subs .subitem-ok').forEach(el => subsanables.push(el.textContent.replace('•','').trim()));
@@ -1916,8 +1929,86 @@ function saveEval(resultId){
   if(resultId === 'stOk'){
     document.querySelectorAll('#st_ok_subs .subitem-ok').forEach(el => subsanables.push(el.textContent.replace('•','').trim()));
   }
+  if(resultId === 'tcFail'){
+    document.querySelectorAll('#tc_fail_body .subitem').forEach(el => subsanables.push(el.textContent.replace('•','').trim()));
+  }
+  if(resultId === 'stFail'){
+    document.querySelectorAll('#st_fail_body .subitem').forEach(el => subsanables.push(el.textContent.replace('•','').trim()));
+  }
 
-  const ev = { id: Date.now(), dni, tipo, resultId, aprobado: res.ok, label: res.label, fecha, hora, capacidad, observaciones, subsanables };
+  // Collect all question answers for the PDF detail
+  let respuestas = [];
+  if(storage === 'rack'){
+    const retiroSel = document.querySelector('#ra_g2 .ynb.sel .ynlbl');
+    const tallerSel = document.querySelector('#ra_g3 .ynb.sel .ynlbl');
+    const transfSel = document.querySelector('#ra_g4 .ynb.sel .ynlbl');
+    const distVal   = document.getElementById('ra_dist')?.value;
+    respuestas = [
+      { q: '¿Tu local tiene retiro (espacio entre puerta y vereda)?', a: retiroSel ? retiroSel.textContent.trim() : '—' },
+      { q: '¿Hay algún taller o negocio que genere chispas cerca?', a: tallerSel ? tallerSel.textContent.trim() : '—' },
+      { q: '¿Hay un transformador eléctrico cerca?', a: transfSel ? transfSel.textContent.trim() : '—' },
+    ];
+    if(raTransf === 'si' && distVal) respuestas.push({ q: 'Distancia al transformador eléctrico', a: distVal + ' metros' });
+  } else if(storage === 'techo'){
+    const ventSel    = document.querySelector('#tc_g1 .ynb.sel .ynlbl');
+    const vw         = document.getElementById('tc_vw')?.value;
+    const vh         = document.getElementById('tc_vh')?.value;
+    const tallerSel  = document.querySelector('#tc_g3 .ynb.sel .ynlbl');
+    const transfSel  = document.querySelector('#tc_g4 .ynb.sel .ynlbl');
+    const distVal    = document.getElementById('tc_dist')?.value;
+    const publicSel  = document.querySelector('#tc_g6 .ynb.sel .ynlbl');
+    const pubDist    = document.getElementById('tc_pub_dist')?.value;
+    const techoSel   = document.querySelector('#tc_g8 .obtn.sel .ott');
+    const pisoSel    = document.querySelector('#tc_g9 .obtn.sel .ott');
+    const paredesSel = document.querySelector('#tc_g10 .obtn.sel .ott');
+    const pisosSel   = document.querySelector('#tc_g11 .ynb.sel .ynlbl');
+    const puertaSel  = document.querySelector('#tc_g12 .ynb.sel .ynlbl');
+    const cablesSel  = document.querySelector('#tc_g13 .ynb.sel .ynlbl');
+    const largo      = document.getElementById('tc_largo')?.value;
+    const ancho      = document.getElementById('tc_ancho')?.value;
+    respuestas = [
+      { q: '¿El almacén tiene ventilación permanente?', a: ventSel ? ventSel.textContent.trim() : '—' },
+    ];
+    if(tcVentAns === 'si' && vw && vh) respuestas.push({ q: 'Área de ventilación (ancho × alto)', a: `${vw} m × ${vh} m = ${(parseFloat(vw)*parseFloat(vh)).toFixed(2)} m²` });
+    respuestas.push({ q: '¿Hay algún taller o negocio que genere chispas cerca?', a: tallerSel ? tallerSel.textContent.trim() : '—' });
+    respuestas.push({ q: '¿Hay un transformador eléctrico cerca?', a: transfSel ? transfSel.textContent.trim() : '—' });
+    if(tcTransfAns === 'si' && distVal) respuestas.push({ q: 'Distancia al transformador eléctrico', a: distVal + ' metros' });
+    respuestas.push({ q: '¿Existen lugares de afluencia de público cercanos?', a: publicSel ? publicSel.textContent.trim() : '—' });
+    if(tcPublicAns === 'si' && pubDist) respuestas.push({ q: 'Distancia al lugar de afluencia de público', a: pubDist + ' metros' });
+    respuestas.push({ q: 'Material del TECHO', a: techoSel ? techoSel.textContent.trim() : '—' });
+    respuestas.push({ q: 'Material del PISO', a: pisoSel ? pisoSel.textContent.trim() : '—' });
+    respuestas.push({ q: 'Material de las PAREDES', a: paredesSel ? paredesSel.textContent.trim() : '—' });
+    respuestas.push({ q: '¿Hay pisos superiores sobre el almacén?', a: pisosSel ? pisosSel.textContent.trim() : '—' });
+    respuestas.push({ q: '¿Existe una segunda puerta o ingreso?', a: puertaSel ? puertaSel.textContent.trim() : '—' });
+    respuestas.push({ q: '¿Hay cables eléctricos dentro del almacén?', a: cablesSel ? cablesSel.textContent.trim() : '—' });
+    if(largo && ancho) respuestas.push({ q: 'Dimensiones del almacén (largo × ancho)', a: `${largo} m × ${ancho} m = ${(parseFloat(largo)*parseFloat(ancho)).toFixed(2)} m²` });
+  } else if(storage === 'sin_techo'){
+    const tallerSel  = document.querySelector('#st_g1 .ynb.sel .ynlbl');
+    const transfSel  = document.querySelector('#st_g2 .ynb.sel .ynlbl');
+    const distVal    = document.getElementById('st_dist')?.value;
+    const publicSel  = document.querySelector('#st_g4 .ynb.sel .ynlbl');
+    const pubDist    = document.getElementById('st_pub_dist')?.value;
+    const toldoSel   = document.querySelector('#st_g6 .ynb.sel .ynlbl');
+    const pisoSel    = document.querySelector('#st_g7o .obtn.sel .ott') || document.querySelector('#st_g7 .ynb.sel .ynlbl');
+    const paredesSel = document.querySelector('#st_g8o .obtn.sel .ott') || document.querySelector('#st_g8 .ynb.sel .ynlbl');
+    const cablesSel  = document.querySelector('#st_g9 .ynb.sel .ynlbl');
+    const largo      = document.getElementById('st_largo')?.value;
+    const ancho      = document.getElementById('st_ancho')?.value;
+    respuestas = [
+      { q: '¿Hay algún taller o negocio que genere chispas cerca?', a: tallerSel ? tallerSel.textContent.trim() : '—' },
+      { q: '¿Hay un transformador eléctrico cerca?', a: transfSel ? transfSel.textContent.trim() : '—' },
+    ];
+    if(stTransfAns === 'si' && distVal) respuestas.push({ q: 'Distancia al transformador eléctrico', a: distVal + ' metros' });
+    respuestas.push({ q: '¿Existen lugares de afluencia de público cercanos?', a: publicSel ? publicSel.textContent.trim() : '—' });
+    if(stPublicAns === 'si' && pubDist) respuestas.push({ q: 'Distancia al lugar de afluencia de público', a: pubDist + ' metros' });
+    respuestas.push({ q: '¿Hay toldo o techo temporal sobre el área?', a: toldoSel ? toldoSel.textContent.trim() : '—' });
+    if(pisoSel) respuestas.push({ q: 'Material del PISO', a: pisoSel.textContent.trim() });
+    if(paredesSel) respuestas.push({ q: 'Material de las PAREDES/CERCO', a: paredesSel.textContent.trim() });
+    respuestas.push({ q: '¿Hay cables eléctricos dentro del área?', a: cablesSel ? cablesSel.textContent.trim() : '—' });
+    if(largo && ancho) respuestas.push({ q: 'Dimensiones del área (largo × ancho)', a: `${largo} m × ${ancho} m = ${(parseFloat(largo)*parseFloat(ancho)).toFixed(2)} m²` });
+  }
+
+  const ev = { id: Date.now(), dni, tipo, resultId, aprobado: res.ok, label: res.label, fecha, hora, capacidad, observaciones, subsanables, respuestas };
   evaluaciones.unshift(ev);
 
   // Flash feedback on button
@@ -2104,38 +2195,95 @@ function downloadPDF(index){
     y += obsH + 8;
   }
 
-  // Section: Subsanables (if approved with warnings)
-  if(isOk && ev.subsanables.length > 0){
+  // Section: Subsanables (aprobado con observaciones O no aprobado con subsanables)
+  if(ev.subsanables.length > 0){
+    const subH = 22 + ev.subsanables.length * 12;
     doc.setFillColor(255, 251, 235);
-    const subH = 18 + ev.subsanables.length * 12;
     doc.roundedRect(pad, y, W - pad*2, subH, 4, 4, 'F');
     doc.setTextColor(146, 64, 14);
     doc.setFontSize(9);
     doc.setFont('helvetica','bold');
-    doc.text('Requisitos para la visita de supervision:', pad + 6, y + 9);
+    doc.text('Adicionalmente tu almacen debe cumplir con los siguientes puntos', pad + 6, y + 9);
+    doc.text('al momento de la visita de supervision:', pad + 6, y + 15);
     doc.setFont('helvetica','normal');
     doc.setFontSize(8.5);
     ev.subsanables.forEach((s, i) => {
-      doc.text(`-  ${s.replace(/[^\x00-\x7F]/g,'').trim()}`, pad + 8, y + 18 + i * 12);
+      doc.text(`-  ${s.replace(/[^\x00-\x7F]/g,'').trim()}`, pad + 8, y + 22 + i * 12);
     });
     y += subH + 8;
   }
 
-  // Section: Siguiente paso
-  doc.setFillColor(240, 253, 244);
-  doc.setDrawColor(134, 239, 172);
-  doc.roundedRect(pad, y, W - pad*2, 28, 4, 4, 'F');
-  doc.setTextColor(20, 83, 45);
-  doc.setFontSize(9);
-  doc.setFont('helvetica','bold');
-  doc.text('Siguiente paso:', pad + 6, y + 10);
-  doc.setFont('helvetica','normal');
-  doc.setFontSize(8.5);
-  doc.text('Acercate a una oficina de Osinergmin con tu DNI y este documento para iniciar', pad + 6, y + 18);
-  doc.text('los tramites documentarios de formalizacion.', pad + 6, y + 24);
-  y += 36;
+  // Section: Detalle de respuestas
+  if(ev.respuestas && ev.respuestas.length > 0){
+    // Check if we need a new page
+    if(y > 200){
+      doc.addPage();
+      doc.setFillColor(240, 244, 255);
+      doc.rect(0, 0, W, 297, 'F');
+      y = 20;
+    }
 
-  // Footer
+    // Section title
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(pad, y, W - pad*2, 14, 4, 4, 'F');
+    doc.setTextColor(8, 40, 122);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Detalle de respuestas', pad + 6, y + 9);
+    doc.setDrawColor(212, 220, 239);
+    doc.line(pad + 6, y + 11, W - pad - 6, y + 11);
+    y += 20;
+
+    ev.respuestas.forEach((item, idx) => {
+      const rowH = 16;
+      // Check page overflow
+      if(y + rowH > 275){
+        doc.addPage();
+        doc.setFillColor(240, 244, 255);
+        doc.rect(0, 0, W, 297, 'F');
+        y = 20;
+      }
+      const bg = idx % 2 === 0 ? [255,255,255] : [240,244,255];
+      doc.setFillColor(...bg);
+      doc.roundedRect(pad, y, W - pad*2, rowH, 2, 2, 'F');
+
+      // Question
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(58, 77, 122);
+      const qClean = item.q.replace(/[^\x00-\x7F]/g, '').trim();
+      doc.text(qClean, pad + 5, y + 6);
+
+      // Answer
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(8, 40, 122);
+      const aClean = item.a.replace(/[^\x00-\x7F]/g, '').trim();
+      doc.text(aClean, pad + 5, y + 12);
+
+      y += rowH + 2;
+    });
+    y += 6;
+  }
+
+  // Section: Siguiente paso (solo si aprobado)
+  if(isOk){
+    doc.setFillColor(240, 253, 244);
+    doc.setDrawColor(134, 239, 172);
+    doc.roundedRect(pad, y, W - pad*2, 28, 4, 4, 'F');
+    doc.setTextColor(20, 83, 45);
+    doc.setFontSize(9);
+    doc.setFont('helvetica','bold');
+    doc.text('Siguiente paso:', pad + 6, y + 10);
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(8.5);
+    doc.text('Acercate a una oficina de Osinergmin con tu DNI y este documento para iniciar', pad + 6, y + 18);
+    doc.text('los tramites documentarios de formalizacion.', pad + 6, y + 24);
+    y += 36;
+  }
+
+  // Footer — always on the last page
+  const totalPages = doc.internal.getNumberOfPages();
+  doc.setPage(totalPages);
   doc.setFillColor(8, 40, 122);
   doc.rect(0, 287, W, 10, 'F');
   doc.setTextColor(180, 200, 255);
@@ -2171,8 +2319,109 @@ function resetAll(){
   const slr=document.getElementById('st_local_result'); if(slr) slr.style.display='none';
   
 }
+
+// ══════════════════════════════════════════════════════════
+// ENVÍO A GOOGLE SHEETS
+// ══════════════════════════════════════════════════════════
+const URL_SHEETS = "https://script.google.com/macros/s/AKfycbxphqNwz1jBrnSRYEPSIvzEo75YNNLlPrl0Jhx4iRYi-BJ-PsUSnM9EPc-fBEs3M43Z6w/exec";
+
+// Construye el objeto de datos a partir del estado actual de la evaluación
+function buildDatosSheets(resultadoLabel) {
+  const dni = document.getElementById('dniIn').value || '';
+  const tipoLabel = { rack: 'Rack / Jaula', techo: 'Local con techo', sin_techo: 'Local sin techo' }[storage] || '';
+  const datos = { dni, tipo_almacen: tipoLabel, resultado: resultadoLabel };
+
+  if (storage === 'rack') {
+    const retiroEl  = document.querySelector('#ra_g2 .ynb.sel .ynlbl');
+    const chispasEl = document.querySelector('#ra_g3 .ynb.sel .ynlbl');
+    const transfEl  = document.querySelector('#ra_g4 .ynb.sel .ynlbl');
+    datos.retiro             = retiroEl  ? retiroEl.textContent.trim()  : 'N/A';
+    datos.chispas            = chispasEl ? chispasEl.textContent.trim() : 'N/A';
+    datos.transformador      = transfEl  ? transfEl.textContent.trim()  : 'N/A';
+    datos.dist_transformador = raTransf === 'si'
+      ? (document.getElementById('ra_dist')?.value || 'N/A') + ' m'
+      : 'N/A';
+
+  } else if (storage === 'techo') {
+    const ventEl    = document.querySelector('#tc_g1 .ynb.sel .ynlbl');
+    const chispasEl = document.querySelector('#tc_g3 .ynb.sel .ynlbl');
+    const transfEl  = document.querySelector('#tc_g4 .ynb.sel .ynlbl');
+    const publicoEl = document.querySelector('#tc_g6 .ynb.sel .ynlbl');
+    const techoEl   = document.querySelector('#tc_g8 .obtn.sel .ott');
+    const pisoEl    = document.querySelector('#tc_g9 .obtn.sel .ott');
+    const paredEl   = document.querySelector('#tc_g10 .obtn.sel .ott');
+    const pisosEl   = document.querySelector('#tc_g11 .ynb.sel .ynlbl');
+    const puertaEl  = document.querySelector('#tc_g12 .ynb.sel .ynlbl');
+    const cablesEl  = document.querySelector('#tc_g13 .ynb.sel .ynlbl');
+    const vw = document.getElementById('tc_vw')?.value;
+    const vh = document.getElementById('tc_vh')?.value;
+    const largo = document.getElementById('tc_largo')?.value;
+    const ancho = document.getElementById('tc_ancho')?.value;
+    datos.ventilacion        = ventEl    ? ventEl.textContent.trim()    : 'N/A';
+    datos.area_ventilacion   = (tcVentAns === 'si' && vw && vh)
+      ? vw + ' m x ' + vh + ' m (' + (parseFloat(vw)*parseFloat(vh)).toFixed(2) + ' m2)'
+      : 'N/A';
+    datos.chispas            = chispasEl ? chispasEl.textContent.trim() : 'N/A';
+    datos.transformador      = transfEl  ? transfEl.textContent.trim()  : 'N/A';
+    datos.dist_transformador = tcTransfAns === 'si'
+      ? (document.getElementById('tc_dist')?.value || 'N/A') + ' m'
+      : 'N/A';
+    datos.afluencia_publico  = publicoEl ? publicoEl.textContent.trim() : 'N/A';
+    datos.dist_afluencia     = tcPublicAns === 'si'
+      ? (document.getElementById('tc_pub_dist')?.value || 'N/A') + ' m'
+      : 'N/A';
+    datos.material_techo     = techoEl   ? techoEl.textContent.trim()   : 'N/A';
+    datos.material_piso      = pisoEl    ? pisoEl.textContent.trim()    : 'N/A';
+    datos.material_paredes   = paredEl   ? paredEl.textContent.trim()   : 'N/A';
+    datos.pisos_superiores   = pisosEl   ? pisosEl.textContent.trim()   : 'N/A';
+    datos.segunda_puerta     = puertaEl  ? puertaEl.textContent.trim()  : 'N/A';
+    datos.cables_electricos  = cablesEl  ? cablesEl.textContent.trim()  : 'N/A';
+    datos.dimensiones        = (largo && ancho)
+      ? largo + ' m x ' + ancho + ' m (' + (parseFloat(largo)*parseFloat(ancho)).toFixed(2) + ' m2)'
+      : 'N/A';
+
+  } else if (storage === 'sin_techo') {
+    const chispasEl = document.querySelector('#st_g1 .ynb.sel .ynlbl');
+    const transfEl  = document.querySelector('#st_g2 .ynb.sel .ynlbl');
+    const publicoEl = document.querySelector('#st_g4 .ynb.sel .ynlbl');
+    const toldoEl   = document.querySelector('#st_g6 .ynb.sel .ynlbl');
+    const pisoEl    = document.querySelector('#st_g7o .obtn.sel .ott');
+    const paredEl   = document.querySelector('#st_g8o .obtn.sel .ott');
+    const cablesEl  = document.querySelector('#st_g9 .ynb.sel .ynlbl');
+    const largo = document.getElementById('st_largo')?.value;
+    const ancho = document.getElementById('st_ancho')?.value;
+    datos.chispas            = chispasEl ? chispasEl.textContent.trim() : 'N/A';
+    datos.transformador      = transfEl  ? transfEl.textContent.trim()  : 'N/A';
+    datos.dist_transformador = stTransfAns === 'si'
+      ? (document.getElementById('st_dist')?.value || 'N/A') + ' m'
+      : 'N/A';
+    datos.afluencia_publico  = publicoEl ? publicoEl.textContent.trim() : 'N/A';
+    datos.dist_afluencia     = stPublicAns === 'si'
+      ? (document.getElementById('st_pub_dist')?.value || 'N/A') + ' m'
+      : 'N/A';
+    datos.toldo              = toldoEl   ? toldoEl.textContent.trim()   : 'N/A';
+    datos.material_piso      = pisoEl    ? pisoEl.textContent.trim()    : 'N/A';
+    datos.material_paredes   = paredEl   ? paredEl.textContent.trim()   : 'N/A';
+    datos.cables_electricos  = cablesEl  ? cablesEl.textContent.trim()  : 'N/A';
+    datos.dimensiones        = (largo && ancho)
+      ? largo + ' m x ' + ancho + ' m (' + (parseFloat(largo)*parseFloat(ancho)).toFixed(2) + ' m2)'
+      : 'N/A';
+  }
+
+  return datos;
+}
+
+// Envía los datos al endpoint de Google Sheets (se llama desde showResult vía los botones de resultado)
+function enviarASheets(resultadoLabel) {
+  const datos = buildDatosSheets(resultadoLabel);
+  fetch(URL_SHEETS, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(datos)
+  }).catch(error => console.error('Error al enviar a Sheets:', error));
+}
 </script>
 </body>
 
 </html>
-
